@@ -1,11 +1,12 @@
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Cpu, Zap, Brain, Shield, Activity, Layers, ArrowRight, Check, Network, RotateCcw } from 'lucide-react';
+import { Cpu, Zap, Brain, Shield, Activity, Layers, ArrowRight, Check, Network } from 'lucide-react';
 
 /* AegisEdge A15 芯片详细介绍页 —— 蓝科技风 + 红紫交互背景 + 高斯模糊未来感 */
+/* 算力板块：H200 级扁平化真实芯片照片 */
 
 const specs = [
   { label: '制程工艺', value: '3nm', desc: '台积电 N3B 顶级制程' },
@@ -50,62 +51,11 @@ const pipeline = [
   { step: '04', title: '运动执行', desc: '28 自由度执行器毫秒级响应，全身协调控制输出' },
 ];
 
-/* AegisEdge A15 芯片 3D 动态展示组件 —— 鼠标拖拽旋转 + 自动悬浮 + 光环粒子 */
+/* ---------- 算力板块（扁平化芯片照片） ---------- */
+const chipImg =
+  'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=photorealistic%20top-down%20product%20photograph%20of%20NVIDIA%20H200%20black%20square%20silicon%20chip%20processor%20on%20dark%20PCB%20board%2C%20golden%20circuit%20traces%2C%20glowing%20cyan%20blue%20signal%20paths%2C%20large%20blue%20AI%20accelerator%20core%20die%20in%20center%2C%20flat%20plan%20view%20no%203D%20perspective%2C%20studio%20macro%20lighting%2C%20high%20contrast%20detail%2C%20ultra%20detailed%204k%20product%20shot&image_size=square_hd';
+
 function Chip3DShowcase() {
-  const rotateX = useMotionValue(-18);
-  const rotateY = useMotionValue(28);
-  const sx = useSpring(rotateX, { stiffness: 120, damping: 18, mass: 0.6 });
-  const sy = useSpring(rotateY, { stiffness: 120, damping: 18, mass: 0.6 });
-  const [dragging, setDragging] = useState(false);
-  const [autoSpin, setAutoSpin] = useState(true);
-  const lastPointer = useRef({ x: 0, y: 0 });
-
-  // 自动旋转
-  useEffect(() => {
-    if (!autoSpin) return;
-    let raf;
-    let last = performance.now();
-    const tick = (now) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      rotateY.set(rotateY.get() + dt * 12);
-      rotateX.set(-18 + Math.sin(now / 1400) * 4);
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [autoSpin, rotateX, rotateY]);
-
-  const onPointerDown = (e) => {
-    setDragging(true);
-    setAutoSpin(false);
-    lastPointer.current = { x: e.clientX, y: e.clientY };
-    (e.target).setPointerCapture?.(e.pointerId);
-  };
-  const onPointerMove = (e) => {
-    if (!dragging) return;
-    const dx = e.clientX - lastPointer.current.x;
-    const dy = e.clientY - lastPointer.current.y;
-    lastPointer.current = { x: e.clientX, y: e.clientY };
-    rotateY.set(rotateY.get() + dx * 0.5);
-    rotateX.set(rotateX.get() - dy * 0.5);
-  };
-  const onPointerUp = () => setDragging(false);
-
-  const resetView = () => {
-    rotateX.set(-18);
-    rotateY.set(28);
-    setAutoSpin(true);
-  };
-
-  // 芯片四角金属触点
-  const corners = [
-    'top-0 left-0',
-    'top-0 right-0',
-    'bottom-0 left-0',
-    'bottom-0 right-0',
-  ];
-
   return (
     <section className="relative py-20 md:py-28 bg-gradient-to-b from-black via-[#080812] to-black overflow-hidden">
       {/* 背景光晕 */}
@@ -123,16 +73,18 @@ function Chip3DShowcase() {
             transition={{ duration: 0.7 }}
           >
             <p className="text-xs font-semibold tracking-[0.4em] text-cyan-400 uppercase mb-4">
-              Chip Showcase · 芯片三维展示
+              Compute · AI 算力底座
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 leading-tight">
-              拖拽，感受
+              顶级 AI 算力
               <span className="bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent"> AegisEdge A15 </span>
-              的每一寸算力
+              的每一寸性能
             </h2>
             <p className="text-sm md:text-base text-white/65 leading-relaxed mb-8">
               3nm 制程的精密布局，1280 TOPS 算力的金属脉络，触手可及。
-              用鼠标拖动芯片，自由旋转观察；松开后自动回归呼吸式自旋。芯片表面随视角流转的金属光泽，源自实时渲染的环境光反射。
+              AegisEdge A15 边缘 AI 芯片参考顶级 H200 级算力密度设计，
+              在人形机器人狭窄机身内实现端侧大模型实时推理，
+              让视觉识别、语音理解与运动规划同步进行。
             </p>
 
             <div className="flex flex-wrap gap-3 mb-8">
@@ -155,21 +107,9 @@ function Chip3DShowcase() {
               })}
             </div>
 
-            <button
-              onClick={resetView}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 backdrop-blur-md border border-white/20 rounded-full text-xs text-white/80 hover:bg-white/10 hover:border-cyan-400/40 transition-all"
-            >
-              <RotateCcw size={14} className="text-cyan-300" />
-              重置视角 · 恢复自动旋转
-            </button>
-
-            <p className="text-[11px] text-white/40 mt-4">
-              提示：在芯片上按住鼠标拖动，可 360° 自由旋转观察。
-            </p>
-
             <Link
               to="/chip-3d"
-              className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-md border border-cyan-400/40 rounded-full text-xs text-cyan-200 hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-400/70 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-md border border-cyan-400/40 rounded-full text-xs text-cyan-200 hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-400/70 transition-all"
             >
               <Layers size={14} />
               查看 AegisEdge A15 完整 3D 拆解
@@ -177,173 +117,82 @@ function Chip3DShowcase() {
             </Link>
           </motion.div>
 
-          {/* 右：3D 芯片舞台 */}
+          {/* 右：扁平化 H200 风格芯片照片 */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative h-[440px] md:h-[520px] flex items-center justify-center"
-            style={{ perspective: '1600px' }}
           >
-            {/* 芯片光环 */}
-            <motion.div
-              className="absolute w-[360px] h-[360px] rounded-full border border-cyan-400/20"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-            />
-            <motion.div
-              className="absolute w-[440px] h-[440px] rounded-full border border-purple-400/15"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-            />
-            <motion.div
-              className="absolute w-[300px] h-[300px] rounded-full border-2 border-dashed border-cyan-400/25"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-            />
+            {/* 圆形数据光环（装饰，不旋转） */}
+            <div className="absolute w-[380px] h-[380px] rounded-full border border-cyan-400/15" />
+            <div className="absolute w-[460px] h-[460px] rounded-full border border-purple-400/10" />
+            <div className="absolute w-[320px] h-[320px] rounded-full border border-dashed border-cyan-400/20" />
 
-            {/* 光环上的粒子 */}
-            {[...Array(8)].map((_, i) => {
-              const angle = (i / 8) * Math.PI * 2;
-              const r = 180;
-              return (
-                <motion.div
-                  key={i}
-                  className="absolute w-2 h-2 rounded-full bg-cyan-300"
-                  style={{
-                    left: '50%',
-                    top: '50%',
-                    x: Math.cos(angle) * r,
-                    y: Math.sin(angle) * r,
-                    marginLeft: -4,
-                    marginTop: -4,
-                  }}
-                  animate={{ scale: [1, 1.8, 1], opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.25 }}
-                />
-              );
-            })}
-
-            {/* 芯片本体（可拖拽 3D 旋转） */}
+            {/* 芯片照片容器 */}
             <motion.div
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              onPointerLeave={onPointerUp}
-              style={{ rotateX: sx, rotateY: sy, transformStyle: 'preserve-3d' }}
-              className="relative w-[260px] h-[260px] md:w-[300px] md:h-[300px] cursor-grab active:cursor-grabbing select-none"
-              whileHover={{ scale: 1.04 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative w-[320px] h-[320px] md:w-[380px] md:h-[380px] rounded-3xl overflow-hidden border border-white/20 shadow-[0_40px_100px_-20px_rgba(34,211,238,0.3)]"
             >
-              {/* 阴影层 */}
-              <div
-                className="absolute inset-0 bg-cyan-500/30 blur-2xl rounded-3xl"
-                style={{ transform: 'translateZ(-40px)' }}
+              {/* 芯片主图 */}
+              <img
+                src={chipImg}
+                alt="H200 风格芯片 · AegisEdge A15 算力参考"
+                className="absolute inset-0 w-full h-full object-cover"
+                draggable={false}
               />
 
-              {/* 芯片基板（金属感） */}
-              <div
-                className="absolute inset-0 rounded-2xl overflow-hidden border border-white/20 shadow-2xl"
-                style={{
-                  background:
-                    'linear-gradient(135deg, #1a1a2e 0%, #2a2a4a 30%, #1a1a3e 70%, #0a0a1a 100%)',
-                  transform: 'translateZ(20px)',
-                }}
-              >
-                {/* 芯片图片 */}
-                <img
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20chip%20processor%20black%20square%20silicon%20wafer%20golden%20circuit%20traces%20cyan%20glow%20high%20tech%20macro%20photography%20studio&image_size=square_hd"
-                  alt="AegisEdge A15 芯片"
-                  draggable={false}
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
-                />
-
-                {/* 金属拉丝覆盖 */}
-                <div
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    background:
-                      'repeating-linear-gradient(115deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 4px)',
-                  }}
-                />
-
-                {/* 中心 logo 标识 */}
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center"
-                  style={{ transform: 'translateZ(40px)' }}
-                >
-                  <div className="font-display text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(34,211,238,0.5)]">
+              {/* A15 品牌覆盖层 */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-transparent via-transparent to-black/60">
+                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
+                  <span className="font-display text-xl md:text-2xl font-black bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
                     A15
-                  </div>
-                  <div className="text-[10px] tracking-[0.4em] text-cyan-200/70 mt-1">
-                    AEGISEDGE · EDGE AI
-                  </div>
+                  </span>
+                  <p className="text-[9px] tracking-[0.35em] text-cyan-200/70 mt-0.5">AEGISEDGE · EDGE AI</p>
                 </div>
-
-                {/* 边缘走线 */}
-                <div className="absolute inset-3 border border-cyan-400/30 rounded" />
-                <div className="absolute inset-5 border border-purple-400/20 rounded" />
               </div>
 
-              {/* 芯片四角金属触点（凸起） */}
-              {corners.map((pos, i) => (
-                <div
-                  key={i}
-                  className={`absolute ${pos} w-8 h-8 rounded-md bg-gradient-to-br from-gray-300 to-gray-600 border border-white/30`}
-                  style={{ transform: 'translateZ(35px)' }}
-                >
-                  <div className="absolute inset-1 bg-gradient-to-br from-yellow-200/40 to-transparent rounded-sm" />
+              {/* 角标注（左上 / 右上 / 左下 / 右下） */}
+              {[
+                { pos: 'top-3 left-3', text: 'CHIP · A15', sub: '3nm PROCESS' },
+                { pos: 'top-3 right-3', text: '1280 TOPS', sub: 'AI PERFORMANCE', reversed: true },
+              ].map((tag) => (
+                <div key={tag.pos} className={`absolute ${tag.pos} bg-black/55 backdrop-blur-sm border border-white/10 rounded-lg px-2.5 py-1.5`}>
+                  <p className="text-[11px] font-black text-cyan-300 tracking-wide leading-none">{tag.text}</p>
+                  <p className="text-[8px] tracking-[0.25em] text-white/50 mt-0.5 leading-none">{tag.sub}</p>
                 </div>
               ))}
 
-              {/* 芯片底部金手指 */}
-              <div
-                className="absolute -bottom-3 left-8 right-8 h-3 flex gap-1"
-                style={{ transform: 'translateZ(15px) rotateX(90deg)' }}
-              >
-                {[...Array(12)].map((_, i) => (
-                  <div key={i} className="flex-1 bg-gradient-to-b from-yellow-300/80 to-yellow-600/40 rounded-sm" />
-                ))}
-              </div>
-
-              {/* 顶部发光线 */}
-              <motion.div
-                className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-transparent"
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                style={{ transform: 'translateZ(45px)' }}
-              />
-            </motion.div>
-
-            {/* 底座圆盘 */}
-            <div className="absolute bottom-8 w-[280px] h-3 bg-black/40 rounded-full blur-md" />
-
-            {/* 数据流标签 */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="absolute top-4 right-0 bg-white/5 backdrop-blur-md border border-white/15 rounded-lg px-3 py-2 text-[10px] text-cyan-200"
-            >
-              <div className="flex items-center gap-1.5">
-                <motion.span
-                  className="w-1.5 h-1.5 rounded-full bg-green-400"
-                  animate={{ opacity: [0.4, 1, 0.4] }}
-                  transition={{ duration: 1.4, repeat: Infinity }}
-                />
-                <span>实时渲染中</span>
+              {/* 底部信息条 */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <motion.span
+                    className="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 1.4, repeat: Infinity }}
+                  />
+                  <span className="text-[10px] text-white/70 font-semibold tracking-wider">LIVE · EDGE INFERENCE</span>
+                </div>
+                <span className="text-[10px] text-white/50 font-semibold tabular-nums">
+                  {new Date().getFullYear()}
+                </span>
               </div>
             </motion.div>
 
+            {/* 左下参考说明 */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.8 }}
-              className="absolute bottom-0 left-0 bg-white/5 backdrop-blur-md border border-white/15 rounded-lg px-3 py-2 text-[10px] text-purple-200"
+              transition={{ delay: 0.5 }}
+              className="absolute bottom-0 left-0 bg-white/5 backdrop-blur-md border border-white/15 rounded-lg px-3 py-2 text-[10px] text-cyan-200"
             >
-              {dragging ? '手动控制中' : autoSpin ? '自动旋转' : '已暂停'}
+              H200 级算力密度参考
             </motion.div>
           </motion.div>
         </div>

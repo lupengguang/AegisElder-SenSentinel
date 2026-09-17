@@ -96,8 +96,10 @@ function PageRoutes() {
 }
 
 export default function App() {
+  // 兼容 GitHub Pages 子路径部署：本地 BASE_URL 为 '/'，线上为 '/AegisElder-SenSentinel/'
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename || undefined}>
       <PageRoutes />
     </BrowserRouter>
   );

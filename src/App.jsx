@@ -12,6 +12,7 @@ import G2CGovernment from './pages/G2CGovernment';
 import QwenOmniBrain from './pages/QwenOmniBrain';
 import AegisDock from './pages/AegisDock';
 import BackupBattery from './pages/BackupBattery';
+import AIChatDemo from './pages/AIChatDemo';
 
 function PageRoutes() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function PageRoutes() {
         <Route path="/qwen3-omni" element={<QwenOmniBrain />} />
         <Route path="/aegis-dock" element={<AegisDock />} />
         <Route path="/backup-battery" element={<BackupBattery />} />
+        <Route path="/ai-chat-demo" element={<AIChatDemo />} />
         <Route
           path="/guide"
           element={

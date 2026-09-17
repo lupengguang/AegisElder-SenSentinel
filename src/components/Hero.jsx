@@ -102,7 +102,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-xs md:text-sm text-cyan-300/80 tracking-[0.4em] uppercase mb-8 font-light"
           >
-            智能感知 · 主动防御 · 全天候守护
+            多模态 AI 感知 · 全天候养老陪护
           </motion.p>
 
           {/* 主标题 - 英文一行 */}
@@ -160,8 +160,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 2.2 }}
             className="text-white/70 text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            以智能感知构筑安全屏障，以主动防御守护关键资产。
-            全天候、全场景、全栈式的下一代安防守护解决方案。
+            以多模态 AI 感知守护长者安康，全天候、全场景陪护的人形养老机器人解决方案，覆盖机构、家庭、民政养老场景。
           </motion.p>
 
           {/* 按钮组 */}

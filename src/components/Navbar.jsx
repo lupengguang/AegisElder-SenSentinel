@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingBag, User, Menu, X } from 'lucide-react';
+import { Search, ShoppingBag, User, Menu, X, MessageCircle } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,6 +24,7 @@ export default function Navbar() {
     { name: '首页', path: '/' },
     { name: '产品列表', path: '/products' },
     { name: '机器人详情', path: '/robot-detail' },
+    { name: 'AI 陪护对话演示', path: '/ai-chat-demo', highlight: true },
     { name: '购买指南', path: '/guide' },
     { name: '联系我们', path: '/contact' },
     { name: '关于我们', path: '/about' },
@@ -51,24 +52,34 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navLinks.map((link, idx) => (
-              <motion.div key={link.path} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }}>
-                <Link
-                  to={link.path}
-                  className={`relative text-sm font-medium transition-colors hover:text-gray-900 ${
-                    location.pathname === link.path ? 'text-gray-900' : 'text-gray-500'
-                  }`}
-                >
-                  {link.name}
-                  <motion.div
-                    layoutId="navUnderline"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black origin-left"
-                    initial={false}
-                    animate={{ scaleX: location.pathname === link.path ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Link>
+              <motion.div key={link.path} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.08 }}>
+                {link.highlight ? (
+                  <Link
+                    to={link.path}
+                    className="relative inline-flex items-center gap-1.5 text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-3.5 py-1.5 rounded-full shadow-sm hover:shadow-[0_4px_16px_rgba(6,182,212,0.4)] hover:-translate-y-0.5 transition-all"
+                  >
+                    <MessageCircle size={13} />
+                    {link.name}
+                  </Link>
+                ) : (
+                  <Link
+                    to={link.path}
+                    className={`relative text-sm font-medium transition-colors hover:text-gray-900 ${
+                      location.pathname === link.path ? 'text-gray-900' : 'text-gray-500'
+                    }`}
+                  >
+                    {link.name}
+                    <motion.div
+                      layoutId="navUnderline"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black origin-left"
+                      initial={false}
+                      animate={{ scaleX: location.pathname === link.path ? 1 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Link>
+                )}
               </motion.div>
             ))}
           </nav>
@@ -122,10 +133,15 @@ export default function Navbar() {
                 >
                   <Link
                     to={link.path}
-                    className={`block px-6 py-3 text-sm font-medium hover:bg-gray-50 transition-colors ${
-                      location.pathname === link.path ? 'bg-gray-50 text-black' : 'text-gray-600'
+                    className={`block px-6 py-3 text-sm font-medium transition-colors ${
+                      link.highlight
+                        ? 'text-cyan-600 hover:bg-cyan-50'
+                        : location.pathname === link.path
+                          ? 'bg-gray-50 text-black'
+                          : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
+                    {link.highlight && <MessageCircle size={13} className="inline-block mr-2 -mt-0.5" />}
                     {link.name}
                   </Link>
                 </motion.div>

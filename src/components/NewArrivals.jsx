@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 import { products } from '../data/products';
 
 export default function NewArrivals() {
-  // 前 5 款为马斯克 Optimus（擎天柱）系列人形机器人
+  // 明星机型：C 端三档 + B 端前两档
   const newProducts = products.slice(0, 5);
 
   return (
@@ -30,12 +30,12 @@ export default function NewArrivals() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-bold px-4 py-2 rounded-full tracking-widest mb-5 shadow-lg shadow-blue-500/25"
           >
             <Cpu size={14} />
-            ELON MUSK SERIES · 马斯克机器人系列
+            SENSENTINEL MATRIX · 森卫分级产品矩阵
           </motion.div>
 
-          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-2">新品上市</h2>
+          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-2">明星机型</h2>
           <p className="text-sm md:text-base text-gray-500 mt-3">
-            Optimus 擎天柱系列人形机器人 —— 源自马斯克的通用机器人愿景，为养老守护而来
+            家庭进阶陪护到机构专业照护 —— 森卫安护人形机器人梯度产品，为养老守护而来
           </p>
           <div className="section-divider" />
         </motion.div>

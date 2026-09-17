@@ -1,5 +1,6 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
-import { ArrowLeft, Code2, Cpu, Palette, Layout, Bot, Sparkles, Heart, ShieldCheck, Users } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { ArrowLeft, Code2, Cpu, Palette, Layout, Bot, Sparkles, Heart, ShieldCheck, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
@@ -43,9 +44,13 @@ const values = [
   { icon: Users, title: '陪伴共生', text: '人机不是替代，而是温柔的并肩。' },
 ];
 
-/* 三屏真实写实背景图（工作室 / 研发机器人 / 实验室测试） */
-const bgWorkshop =
-  'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=photorealistic%20cinematic%20wide%20shot%20of%20a%20modern%20robotics%20startup%20workshop%20at%20night%2C%20open%20space%20tech%20studio%20with%20dark%20concrete%20floor%2C%20large%20desks%20with%20dual%20monitors%20glowing%20blue%2C%20hanging%20cyan%20and%20purple%20neon%20accent%20lights%2C%20glass%20meeting%20rooms%2C%20robot%20parts%20and%203D%20printers%20on%20shelves%2C%20silicon%20chips%20under%20magnifier%20lamps%2C%20moody%20dark%20blue-black%20color%20grade%2C%20volumetric%20light%20rays%2C%20NO%20people%2C%20NO%20text%20NO%20logos%2C%20ultra%20detailed%208k%20architectural%20photography&image_size=landscape_16_9';
+/* 一屏 Hero 轮播：三张真实工作室照片（置于 public/images/about/，扩展名自动回退） */
+const SLIDE_EXTS = ['.jpg', '.png', '.jpeg'];
+const heroSlides = [
+  { base: `${import.meta.env.BASE_URL}images/about/studio-1`, label: '创作工作室' },
+  { base: `${import.meta.env.BASE_URL}images/about/studio-2`, label: '会议空间' },
+  { base: `${import.meta.env.BASE_URL}images/about/studio-3`, label: '研发工位' },
+];
 
 const bgRobotDev =
   'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=photorealistic%20close-up%20cinematic%20scene%20of%20engineers%20developing%20a%20humanoid%20elder-care%20robot%20on%20a%20dark%20workbench%2C%20only%20hands%20and%20arms%20visible%20soldering%20and%20connecting%20cables%20to%20an%20open%20robot%20torso%20with%20exposed%20circuit%20boards%2C%20glowing%20cyan%20LED%20joints%2C%20oscilloscope%20and%20laptop%20screens%20showing%20code%20and%20sensor%20waveforms%2C%20fine%20metal%20servo%20parts%20scattered%2C%20dark%20blue-black-purple%20moody%20lighting%2C%20shallow%20depth%20of%20field%2C%20NO%20faces%20NO%20text%20NO%20logos%2C%20ultra%20detailed%208k%20documentary%20photography&image_size=landscape_16_9';
@@ -56,6 +61,18 @@ const bgLabTest =
 export default function About() {
   const { scrollYProgress } = useScroll();
   const progressScale = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
+
+  /* ---- 一屏 Hero 工作室照片轮播 ---- */
+  const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const go = useCallback((n) => setSlide((s) => (n + heroSlides.length) % heroSlides.length), []);
+
+  useEffect(() => {
+    if (paused) return undefined;
+    const t = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 5500);
+    return () => clearInterval(t);
+  }, [paused, slide]);
 
   return (
     <motion.div
@@ -70,21 +87,79 @@ export default function About() {
         style={{ scaleX: progressScale }}
       />
 
-      {/* 一屏：Hero · 工作室全景背景 */}
-      <section className="relative min-h-screen flex items-center pt-36 pb-24 md:pt-40 overflow-hidden">
-        {/* 工作室底图 */}
-        <div
-          className="absolute inset-0 bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(${bgWorkshop})` }}
-          aria-hidden
-        />
-        {/* 可读性遮罩 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/78 to-black pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/75 to-transparent pointer-events-none" />
-        {/* 背景光晕 */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-blue-600/20 rounded-full blur-[200px] pointer-events-none" />
-        <div className="absolute top-10 right-0 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[380px] h-[380px] bg-cyan-600/15 rounded-full blur-[140px] pointer-events-none" />
+      {/* 一屏：Hero · 工作室照片轮播背景 */}
+      <section
+        className="relative min-h-screen flex items-center pt-36 pb-24 md:pt-40 overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* 轮播图层（交叉淡入 + Ken Burns 缓推） */}
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={slide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ opacity: { duration: 1.3, ease: 'easeInOut' } }}
+            className="absolute inset-0"
+            aria-hidden
+          >
+            <motion.img
+              src={`${heroSlides[slide].base}${SLIDE_EXTS[0]}`}
+              alt={heroSlides[slide].label}
+              className="w-full h-full object-cover"
+              initial={{ scale: 1.02 }}
+              animate={{ scale: 1.1 }}
+              transition={{ duration: 6.5, ease: 'linear' }}
+              draggable={false}
+              onError={(e) => {
+                const idx = e.currentTarget.dataset.fi ? Number(e.currentTarget.dataset.fi) : 0;
+                if (idx < SLIDE_EXTS.length - 1) {
+                  e.currentTarget.dataset.fi = String(idx + 1);
+                  e.currentTarget.src = `${heroSlides[slide].base}${SLIDE_EXTS[idx + 1]}`;
+                }
+              }}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* 左右切换箭头 */}
+        <button
+          onClick={() => go(slide - 1)}
+          aria-label="上一张"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/35 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/80 hover:bg-black/60 hover:text-white hover:border-cyan-300/50 transition-all opacity-70 hover:opacity-100"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={() => go(slide + 1)}
+          aria-label="下一张"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/35 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/80 hover:bg-black/60 hover:text-white hover:border-cyan-300/50 transition-all opacity-70 hover:opacity-100"
+        >
+          <ChevronRight size={20} />
+        </button>
+
+        {/* 指示点 + 当前场景名 */}
+        <div className="absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {heroSlides.map((s, i) => (
+            <button
+              key={s.base}
+              onClick={() => setSlide(i)}
+              aria-label={`切换到${s.label}`}
+              className="group flex items-center gap-2"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all duration-500 ${
+                  i === slide ? 'w-8 bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.7)]' : 'w-3 bg-white/35 group-hover:bg-white/60'
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+        {/* 可读性遮罩：中间通透展示照片，仅文字区与顶底加深 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/85 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
           {/* 返回导航 */}

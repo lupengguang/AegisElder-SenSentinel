@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /* =================================================================
- * AegisEdge A15 · 人形机器人边缘 AI 芯片 3D 爆炸模型
+ * AegisEdge Ai5 · 人形机器人边缘 AI 芯片 3D 爆炸模型
  * 10 层立体封装结构（从顶盖到触点）
  * =================================================================
 
@@ -604,7 +604,7 @@ function GoldContacts({ y, size, hoveredLayer, setHoveredLayer, setSelectedLayer
   );
 }
 
-/* 整个 AegisEdge A15 芯片 3D 爆炸模型 */
+/* 整个 AegisEdge Ai5 芯片 3D 爆炸模型 */
 export default function ChipModel({
   explodeFactor,
   hoveredLayer,

@@ -11,7 +11,7 @@ import {
 
 /* ====================================================================
  * 森卫安护｜B 端养老机构完整解决方案
- * 核心硬件：AegisEdge A15 人形机器人边缘 AI 芯片
+ * 核心硬件：AegisEdge Ai5 人形机器人边缘 AI 芯片
  * ==================================================================== */
 
 /* ---------- 数字滚动计数组件 ---------- */
@@ -48,9 +48,9 @@ const capabilities = [
     no: '01',
     icon: Radar,
     title: '24 小时自主巡护查房',
-    subtitle: 'AegisEdge A15 本地视觉导航',
+    subtitle: 'AegisEdge Ai5 本地视觉导航',
     desc:
-      'AegisEdge A15 芯片内置 SLAM 建图与多模态感知单元，机器人按照机构预设路线自主巡逻病房、公共活动区。自动记录老人房间状态、环境温湿度、异常滞留，生成标准化查房日志，实时同步到机构护理后台看板；夜间低光照环境下依然稳定识别，无需人工陪同巡检。',
+      'AegisEdge Ai5 芯片内置 SLAM 建图与多模态感知单元，机器人按照机构预设路线自主巡逻病房、公共活动区。自动记录老人房间状态、环境温湿度、异常滞留，生成标准化查房日志，实时同步到机构护理后台看板；夜间低光照环境下依然稳定识别，无需人工陪同巡检。',
     points: [
       { icon: Radar, text: 'SLAM 自主建图与路径规划' },
       { icon: FileText, text: '标准化查房日志自动生成' },
@@ -69,7 +69,7 @@ const capabilities = [
     title: '跌倒识别即时报警',
     subtitle: '端侧本地推理 · 毫秒级低延迟',
     desc:
-      '依托 AegisEdge A15 的 1280TOPS 端侧 AI 算力，本地实时运行人体姿态识别模型。摄像头捕捉到老人跌倒、长时间躺卧不动等高危场景不等待云端传输，毫秒级触发本地告警。自动向护理站平板、护工手机推送告警 + 现场截图 / 短视频，附带老人位置，大幅缩短急救响应时间。',
+      '依托 AegisEdge Ai5 的 1280TOPS 端侧 AI 算力，本地实时运行人体姿态识别模型。摄像头捕捉到老人跌倒、长时间躺卧不动等高危场景不等待云端传输，毫秒级触发本地告警。自动向护理站平板、护工手机推送告警 + 现场截图 / 短视频，附带老人位置，大幅缩短急救响应时间。',
     points: [
       { icon: Zap, text: '1280 TOPS 端侧算力本地推理' },
       { icon: Eye, text: '跌倒 / 久卧高危姿态识别' },
@@ -88,7 +88,7 @@ const capabilities = [
     title: '辅助转移与喂餐喂药 · 老年语音陪伴',
     subtitle: '运动规划单元 + Qwen3-Omni 多模态模型',
     desc:
-      'AegisEdge A15 驱动机器人运动规划单元，辅助护工完成老人搀扶、转移助力；定时提醒老人服药、就餐、康复训练。内置 Qwen3-Omni 多模态模型，支持方言、慢速口语对话，陪老人聊天、读报、心理情绪安抚，缓解养老院老人孤独感。',
+      'AegisEdge Ai5 驱动机器人运动规划单元，辅助护工完成老人搀扶、转移助力；定时提醒老人服药、就餐、康复训练。内置 Qwen3-Omni 多模态模型，支持方言、慢速口语对话，陪老人聊天、读报、心理情绪安抚，缓解养老院老人孤独感。',
     points: [
       { icon: HeartHandshake, text: '搀扶转移助力，减轻护工负荷' },
       { icon: Check, text: '服药 / 就餐 / 康复训练定时提醒' },
@@ -105,9 +105,9 @@ const capabilities = [
     no: '04',
     icon: BarChart3,
     title: '护理数据看板对接，院内数字化打通',
-    subtitle: 'AegisEdge A15 安全隔离单元加密上传',
+    subtitle: 'AegisEdge Ai5 安全隔离单元加密上传',
     desc:
-      '机器人采集的所有照护数据（巡检记录、告警事件、老人交互日志），通过 AegisEdge A15 安全隔离单元加密上传，可对接养老院现有 HIS / 护理管理系统。管理人员后台可视化看板：床位风险统计、告警趋势、人力负荷报表，辅助机构做运营调度、风险管控。',
+      '机器人采集的所有照护数据（巡检记录、告警事件、老人交互日志），通过 AegisEdge Ai5 安全隔离单元加密上传，可对接养老院现有 HIS / 护理管理系统。管理人员后台可视化看板：床位风险统计、告警趋势、人力负荷报表，辅助机构做运营调度、风险管控。',
     points: [
       { icon: Lock, text: '安全隔离单元加密数据传输' },
       { icon: Network, text: '对接 HIS / 护理管理系统' },
@@ -302,11 +302,11 @@ export default function B2BEldercare() {
             className="text-sm md:text-base text-white/70 max-w-3xl mx-auto leading-relaxed mb-8"
           >
             AegisElder SenSentinel 森卫安护，搭载
-            <span className="text-cyan-300 font-semibold"> AegisEdge A15 边缘 AI 芯片</span>
+            <span className="text-cyan-300 font-semibold"> AegisEdge Ai5 边缘 AI 芯片</span>
             ，人形机器人整建制落地部署，释放护理人力，构建全天候院内安全照护体系。
           </motion.p>
 
-          {/* AegisEdge A15 芯片徽章 */}
+          {/* AegisEdge Ai5 芯片徽章 */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -325,7 +325,7 @@ export default function B2BEldercare() {
               <Cpu size={18} className="text-white" />
             </motion.span>
             <div className="text-left">
-              <p className="text-xs font-bold text-cyan-200 tracking-wider">AegisEdge A15</p>
+              <p className="text-xs font-bold text-cyan-200 tracking-wider">AegisEdge Ai5</p>
               <p className="text-[10px] text-white/45">人形机器人边缘 AI 芯片 · 1280 TOPS 端侧算力</p>
             </div>
             <Link
@@ -402,7 +402,7 @@ export default function B2BEldercare() {
             <p className="text-base md:text-lg text-white/78 leading-[1.95] mb-8">
               面向<span className="text-cyan-300 font-semibold">养老院、护理院、CCRC 养老社区、康复医院</span>
               批量部署森卫安护人形陪护机器人。机器人搭载自研
-              <span className="text-cyan-300 font-semibold"> AegisEdge A15 边缘 AI 芯片</span>
+              <span className="text-cyan-300 font-semibold"> AegisEdge Ai5 边缘 AI 芯片</span>
               ，本地端侧运行 <span className="text-purple-300 font-semibold">Qwen3-Omni 多模态大模型</span>
               ，无需全程依赖云端。依托芯片强大端侧算力，实现院内实时环境感知、老人姿态识别、语音交互与本地安全决策，将护理人员从查房巡检、体征提醒、风险监测等大量重复性工作中释放，聚焦高难度专业护理操作。
             </p>
@@ -410,7 +410,7 @@ export default function B2BEldercare() {
             {/* 技术标签 */}
             <div className="flex flex-wrap gap-2.5">
               {[
-                { icon: Cpu, text: 'AegisEdge A15 端侧芯片' },
+                { icon: Cpu, text: 'AegisEdge Ai5 端侧芯片' },
                 { icon: Sparkles, text: 'Qwen3-Omni 多模态大模型' },
                 { icon: Network, text: '无需全程依赖云端' },
                 { icon: Lock, text: '本地安全决策' },
@@ -480,10 +480,10 @@ export default function B2BEldercare() {
               Core Capabilities · 四大核心能力
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-              一颗 <span className="bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent">A15</span>，四重守护
+              一颗 <span className="bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent">Ai5</span>，四重守护
             </h2>
             <p className="text-sm text-white/55 max-w-2xl mx-auto">
-              从自主巡护到数据闭环，AegisEdge A15 让院内照护的每一个环节都可感知、可响应、可追溯。
+              从自主巡护到数据闭环，AegisEdge Ai5 让院内照护的每一个环节都可感知、可响应、可追溯。
             </p>
             <div className="section-divider" />
           </motion.div>
@@ -750,7 +750,7 @@ export default function B2BEldercare() {
               为您的机构定制整建制照护方案
             </h3>
             <p className="text-sm text-white/60 max-w-xl mx-auto mb-8 leading-relaxed">
-              预约院区实地演示，森卫安护解决方案团队将携带 AegisEdge A15 机器人到场，按真实病区场景跑通巡护、告警与看板全流程。
+              预约院区实地演示，森卫安护解决方案团队将携带 AegisEdge Ai5 机器人到场，按真实病区场景跑通巡护、告警与看板全流程。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <Link

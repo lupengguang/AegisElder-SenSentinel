@@ -282,7 +282,7 @@ export default function AIChatDemo() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-sm md:text-base text-slate-400 max-w-2xl leading-relaxed"
           >
-            由 Qwen3-Omni 多模态大模型驱动、AegisEdge A15 端侧算力支撑——
+            由 Qwen3-Omni 多模态大模型驱动、AegisEdge Ai5 端侧算力支撑——
             点击下方场景问题，体验森卫安护如何陪老人聊天、提醒用药、处理跌倒险情与远程探亲。
           </motion.p>
         </div>
@@ -346,7 +346,7 @@ export default function AIChatDemo() {
               </div>
               {[
                 { icon: Sparkles, label: 'Qwen3-Omni 多模态' },
-                { icon: Cpu, label: 'AegisEdge A15 · 1280 TOPS' },
+                { icon: Cpu, label: 'AegisEdge Ai5 · 1280 TOPS' },
                 { icon: Activity, label: '推理延迟 < 2 ms' },
                 { icon: ShieldAlert, label: '险情分级告警' },
               ].map((item) => (
@@ -546,7 +546,7 @@ export default function AIChatDemo() {
           className="mt-12 grid md:grid-cols-3 gap-4"
         >
           {[
-            { icon: Cpu, title: '端侧运行，隐私不出户', desc: '对话与感知在 AegisEdge A15 本地完成，仅同步脱敏统计' },
+            { icon: Cpu, title: '端侧运行，隐私不出户', desc: '对话与感知在 AegisEdge Ai5 本地完成，仅同步脱敏统计' },
             { icon: Heart, title: '有温度的长期陪伴', desc: '记住老人的经历、喜好与用药计划，越用越懂家人' },
             { icon: ShieldAlert, title: '险情秒级响应', desc: '跌倒 / 身体异常自动分级上报家属、医生与 120' },
           ].map((f) => (

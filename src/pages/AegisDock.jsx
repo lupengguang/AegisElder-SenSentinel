@@ -116,7 +116,7 @@ const docks = {
 
 /* ---------- 归位流程 ---------- */
 const returnSteps = [
-  { icon: BatteryCharging, title: '低电量感知', desc: '电量低于阈值，A15 芯片触发回桩决策' },
+  { icon: BatteryCharging, title: '低电量感知', desc: '电量低于阈值，Ai5 芯片触发回桩决策' },
   { icon: Radio, title: '路径自主规划', desc: '融合定位解算最优归位路线，主动避让行人' },
   { icon: Crosshair, title: '厘米级对位', desc: '红外 / 视觉 / UWB 多重校准，精准入桩' },
   { icon: Plug, title: '无感补能', desc: '触点自动接通，静音恒功率，温感保护断电' },

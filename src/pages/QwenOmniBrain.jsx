@@ -11,7 +11,7 @@ import {
 
 /* ====================================================================
  * 森卫安护｜Qwen3-Omni 多模态大模型 · AI 大脑内核
- * 与 AegisEdge A15 边缘芯片协同，支撑 B/C/G 三类客户差异化部署
+ * 与 AegisEdge Ai5 边缘芯片协同，支撑 B/C/G 三类客户差异化部署
  * 风格：深色科技风 + 白底卡片，主色深蓝 / 青绿 / 暖白，金色强调
  * ==================================================================== */
 
@@ -317,7 +317,7 @@ export default function QwenOmniBrain() {
             className="text-sm md:text-base text-white/70 max-w-3xl mx-auto leading-relaxed mb-8"
           >
             从语音、视觉、文本到实时环境理解，Qwen3-Omni 为养老人形机器人提供端侧智能决策能力，
-            与 AegisEdge A15 边缘芯片协同，支撑 B/C/G 三类客户差异化部署。
+            与 AegisEdge Ai5 边缘芯片协同，支撑 B/C/G 三类客户差异化部署。
           </motion.p>
 
           <motion.div
@@ -482,7 +482,7 @@ export default function QwenOmniBrain() {
         </div>
       </section>
 
-      {/* ================= Part 2: Qwen3-Omni × AegisEdge A15 协同架构 ================= */}
+      {/* ================= Part 2: Qwen3-Omni × AegisEdge Ai5 协同架构 ================= */}
       <section className="relative py-20 md:py-28 bg-[#05070f] overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
 
@@ -498,12 +498,12 @@ export default function QwenOmniBrain() {
               Part 02 · Edge Synergy
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-5">
-              Qwen3-Omni <span className="text-amber-300">×</span> AegisEdge A15
+              Qwen3-Omni <span className="text-amber-300">×</span> AegisEdge Ai5
               <br />
               <span className="bg-gradient-to-r from-cyan-300 to-amber-300 bg-clip-text text-transparent">端侧养老 AI 架构</span>
             </h2>
             <p className="text-sm md:text-base text-white/62 max-w-3xl mx-auto leading-relaxed">
-              Qwen3-Omni 负责多模态理解与智能决策，AegisEdge A15 负责端侧算力调度与安全可靠执行。
+              Qwen3-Omni 负责多模态理解与智能决策，AegisEdge Ai5 负责端侧算力调度与安全可靠执行。
               二者通过片上互连总线协同推理，实现「认知—决策—执行」毫秒级闭环。
             </p>
           </motion.div>
@@ -579,7 +579,7 @@ export default function QwenOmniBrain() {
               </div>
             </div>
 
-            {/* 下层：AegisEdge A15 芯片层 */}
+            {/* 下层：AegisEdge Ai5 芯片层 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -596,7 +596,7 @@ export default function QwenOmniBrain() {
                     <span className="text-[10px] font-black tracking-[0.25em] text-indigo-300">EDGE CHIP LAYER</span>
                     <span className="text-[10px] bg-indigo-400/20 text-indigo-200 px-2 py-0.5 rounded-full">芯片层</span>
                   </div>
-                  <h3 className="font-display text-xl md:text-2xl font-bold mb-1">AegisEdge A15 边缘芯片层</h3>
+                  <h3 className="font-display text-xl md:text-2xl font-bold mb-1">AegisEdge Ai5 边缘芯片层</h3>
                   <p className="text-xs text-white/60">算力调度 · 安全隔离 · 传感融合 · 执行控制</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -613,7 +613,7 @@ export default function QwenOmniBrain() {
             {[
               { icon: Zap, title: '毫秒级闭环', desc: '认知到执行端到端 < 2ms，实时响应老人需求与险情', color: 'text-amber-300' },
               { icon: Lock, title: '端侧隐私', desc: '多模态数据本地处理，仅脱敏统计上云，符合政务合规', color: 'text-cyan-300' },
-              { icon: Shield, title: '安全可靠', desc: 'A15 独立安全飞地隔离决策，行为可追溯可审计', color: 'text-indigo-300' },
+              { icon: Shield, title: '安全可靠', desc: 'Ai5 独立安全飞地隔离决策，行为可追溯可审计', color: 'text-indigo-300' },
             ].map((v, i) => {
               const Icon = v.icon;
               return (
@@ -863,7 +863,7 @@ export default function QwenOmniBrain() {
               为你的场景，匹配最合适的 AI 大脑
             </h3>
             <p className="text-sm text-white/60 max-w-xl mx-auto mb-8 leading-relaxed">
-              无论是机构、家庭还是民政公益，森卫安护都能基于 Qwen3-Omni 与 AegisEdge A15 提供端到端养老 AI 方案。
+              无论是机构、家庭还是民政公益，森卫安护都能基于 Qwen3-Omni 与 AegisEdge Ai5 提供端到端养老 AI 方案。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <Link

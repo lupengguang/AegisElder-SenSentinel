@@ -388,7 +388,7 @@ export default function About() {
             <Bot size={42} className="mx-auto mb-6 text-cyan-300" />
             <h3 className="font-display text-2xl md:text-4xl font-bold mb-4">
               来看看我们做出来的
-              <span className="bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent">森卫安护 A15</span>
+              <span className="bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent">森卫安护 Ai5</span>
             </h3>
             <p className="text-white/65 text-sm md:text-base mb-8 max-w-xl mx-auto">
               全栈自研 · 端侧 AI · 多模态陪护 · 守护每一位长者的安康日常。

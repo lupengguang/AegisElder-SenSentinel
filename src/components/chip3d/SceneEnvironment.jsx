@@ -99,7 +99,7 @@ export function OrbitalParticles() {
   );
 }
 
-/* 技术标注 —— 半透明引线 + 标签（AegisEdge A15 · 10 层）*/
+/* 技术标注 —— 半透明引线 + 标签（AegisEdge Ai5 · 10 层）*/
 export function TechAnnotations({ hoveredLayer, selectedLayer }) {
   const annotations = [
     { idx: 0, label: 'HEAT SPREADER', desc: '银色拉丝金属散热顶盖', pos: [3.4, 1.6, 0], anchor: [2, 0.4, 0] },

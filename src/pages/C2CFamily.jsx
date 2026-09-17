@@ -11,7 +11,7 @@ import {
 
 /* ====================================================================
  * 森卫安护｜C 端家庭用户完整解决方案
- * 核心硬件：AegisEdge A15 人形机器人边缘 AI 芯片
+ * 核心硬件：AegisEdge Ai5 人形机器人边缘 AI 芯片
  * ==================================================================== */
 
 /* ---------- 数字滚动计数组件 ---------- */
@@ -47,9 +47,9 @@ const capabilities = [
     no: '01',
     icon: Heart,
     title: '情感陪伴与对话解闷',
-    subtitle: 'AegisEdge A15 本地多模态语音',
+    subtitle: 'AegisEdge Ai5 本地多模态语音',
     desc:
-      '依托 AegisEdge A15 算力，本地运行 Qwen3-Omni 多模态模型，支持方言识别、慢速口语交互。机器人可以陪老人日常聊天、回忆往事、朗读新闻戏曲、提醒日常起居；具备情绪感知能力，感知老人低落情绪主动安抚。对话全部本地处理，不用上传录音至云端，保护家庭隐私。',
+      '依托 AegisEdge Ai5 算力，本地运行 Qwen3-Omni 多模态模型，支持方言识别、慢速口语交互。机器人可以陪老人日常聊天、回忆往事、朗读新闻戏曲、提醒日常起居；具备情绪感知能力，感知老人低落情绪主动安抚。对话全部本地处理，不用上传录音至云端，保护家庭隐私。',
     points: [
       { icon: MessageCircle, text: '日常聊天 · 回忆往事 · 朗读新闻戏曲' },
       { icon: Smile, text: '情绪感知，低落时主动安抚' },
@@ -66,9 +66,9 @@ const capabilities = [
     no: '02',
     icon: BellRing,
     title: '一键紧急呼叫家人 · 自动险情上报',
-    subtitle: 'AegisEdge A15 内置安全处理单元',
+    subtitle: 'AegisEdge Ai5 内置安全处理单元',
     desc:
-      '老人身体不适时，一键触发紧急呼叫。AegisEdge A15 芯片内置安全处理单元，自动推送消息 + 实时画面到子女手机 App。即使老人无法手动操作，当系统识别异常险情时，机器人自动发起告警，优先联系紧急联系人，预留紧急医疗通话通道。',
+      '老人身体不适时，一键触发紧急呼叫。AegisEdge Ai5 芯片内置安全处理单元，自动推送消息 + 实时画面到子女手机 App。即使老人无法手动操作，当系统识别异常险情时，机器人自动发起告警，优先联系紧急联系人，预留紧急医疗通话通道。',
     points: [
       { icon: BellRing, text: '一键紧急呼叫，直达子女手机' },
       { icon: Smartphone, text: '消息 + 实时画面 App 双推送' },
@@ -87,7 +87,7 @@ const capabilities = [
     title: '远程视频随时探亲，居家漫游探视',
     subtitle: 'SLAM 室内建图 · 自主避障行走',
     desc:
-      '子女通过手机 App 远程操控森卫安护在家内自主移动，机器人摄像头实时传回家中画面。AegisEdge A15 内置 SLAM 室内建图，机器人可在居家环境自主避障行走，子女不在家也能“走进房间”看望老人，实现异地远程陪伴探视。',
+      '子女通过手机 App 远程操控森卫安护在家内自主移动，机器人摄像头实时传回家中画面。AegisEdge Ai5 内置 SLAM 室内建图，机器人可在居家环境自主避障行走，子女不在家也能“走进房间”看望老人，实现异地远程陪伴探视。',
     points: [
       { icon: Video, text: '手机 App 实时高清视频回传' },
       { icon: Navigation, text: '远程操控机器人居家漫游' },
@@ -106,7 +106,7 @@ const capabilities = [
     title: '摔倒监测与用药、健康定时提醒',
     subtitle: '本地视觉推理 · 断网依旧判定险情',
     desc:
-      'AegisEdge A15 本地视觉推理，实时识别居家跌倒、长时间倒地不起等危险情况，本地毫秒级识别，网络断连依旧可以本地判定险情。自定义定时任务：按时推送吃药、血压测量、复诊、喝水休息提醒；记录健康打卡日志，同步给子女。',
+      'AegisEdge Ai5 本地视觉推理，实时识别居家跌倒、长时间倒地不起等危险情况，本地毫秒级识别，网络断连依旧可以本地判定险情。自定义定时任务：按时推送吃药、血压测量、复诊、喝水休息提醒；记录健康打卡日志，同步给子女。',
     points: [
       { icon: ShieldAlert, text: '跌倒 / 久卧本地毫秒级识别' },
       { icon: WifiOff, text: '断网环境依旧本地判定告警' },
@@ -297,7 +297,7 @@ export default function C2CFamily() {
             className="text-sm md:text-base text-white/70 max-w-3xl mx-auto leading-relaxed mb-8"
           >
             AegisElder SenSentinel 森卫安护人形陪护机器人，搭载
-            <span className="text-teal-300 font-semibold"> AegisEdge A15 边缘 AI 芯片</span>
+            <span className="text-teal-300 font-semibold"> AegisEdge Ai5 边缘 AI 芯片</span>
             ，把不下班的家庭安全陪护助手带入居家养老场景。
           </motion.p>
 
@@ -319,7 +319,7 @@ export default function C2CFamily() {
               <Cpu size={18} className="text-white" />
             </motion.span>
             <div className="text-left">
-              <p className="text-xs font-bold text-teal-200 tracking-wider">AegisEdge A15</p>
+              <p className="text-xs font-bold text-teal-200 tracking-wider">AegisEdge Ai5</p>
               <p className="text-[10px] text-white/45">边缘 AI 芯片 · 本地多模态计算 · 隐私不出户</p>
             </div>
             <Link
@@ -393,14 +393,14 @@ export default function C2CFamily() {
             <p className="text-base md:text-lg text-white/78 leading-[1.95] mb-8">
               为居家养老的长者家庭配备一位 24 小时在岗的
               <span className="text-teal-300 font-semibold">「机器保姆」</span>
-              。森卫安护搭载<span className="text-teal-300 font-semibold"> AegisEdge A15 边缘 AI 芯片</span>
+              。森卫安护搭载<span className="text-teal-300 font-semibold"> AegisEdge Ai5 边缘 AI 芯片</span>
               ，在家庭本地端侧运行 <span className="text-emerald-300 font-semibold">Qwen3-Omni 多模态大模型</span>
               ，大部分感知、识别、对话计算在机器人本地完成，不依赖持续云端连接，保护家庭隐私。面向独居老人、空巢家庭，提供全天候情感陪伴、居家跌倒监测、一键紧急呼叫、子女远程探视，让异地子女实时掌握老人居家安全状态，兼顾老人情感需求与家庭安全防护。
             </p>
 
             <div className="flex flex-wrap gap-2.5">
               {[
-                { icon: Cpu, text: 'AegisEdge A15 端侧芯片' },
+                { icon: Cpu, text: 'AegisEdge Ai5 端侧芯片' },
                 { icon: Sparkles, text: 'Qwen3-Omni 多模态大模型' },
                 { icon: Lock, text: '影像语音本地处理' },
                 { icon: Wifi, text: '不依赖持续云端' },
@@ -473,7 +473,7 @@ export default function C2CFamily() {
               一位不下班的 <span className="bg-gradient-to-r from-teal-300 to-emerald-400 bg-clip-text text-transparent">家庭陪护</span>
             </h2>
             <p className="text-sm text-white/55 max-w-2xl mx-auto">
-              陪伴、呼叫、探视、守护，AegisEdge A15 让居家养老的每一天都安心、温暖、有回应。
+              陪伴、呼叫、探视、守护，AegisEdge Ai5 让居家养老的每一天都安心、温暖、有回应。
             </p>
             <div className="section-divider" />
           </motion.div>

@@ -76,7 +76,7 @@ const keepFunctions = [
   {
     icon: Activity,
     title: '跌倒监测不中断',
-    desc: 'AegisEdge A15 视觉推理持续在线，识别老人跌倒、长时间不动，立刻声光提示并分级告警。',
+    desc: 'AegisEdge Ai5 视觉推理持续在线，识别老人跌倒、长时间不动，立刻声光提示并分级告警。',
     stat: '持续监测',
   },
   {

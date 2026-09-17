@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Cpu, Zap, Brain, Shield, Activity, Layers, ArrowRight, Check, Network } from 'lucide-react';
 
-/* AegisEdge A15 芯片详细介绍页 —— 蓝科技风 + 红紫交互背景 + 高斯模糊未来感 */
+/* AegisEdge Ai5 芯片详细介绍页 —— 蓝科技风 + 红紫交互背景 + 高斯模糊未来感 */
 /* 算力板块：H200 级扁平化真实芯片照片 */
 
 const specs = [
@@ -46,7 +46,7 @@ const pillars = [
 
 const pipeline = [
   { step: '01', title: '感知输入', desc: '摄像头 / 麦克风 / 触觉 / 激光雷达 / IMU 多模态原始信号' },
-  { step: '02', title: '张量融合', desc: 'AegisEdge A15 NPU 在统一张量空间完成多模态对齐与特征融合' },
+  { step: '02', title: '张量融合', desc: 'AegisEdge Ai5 NPU 在统一张量空间完成多模态对齐与特征融合' },
   { step: '03', title: '大模型推理', desc: '端侧 70B 稀疏化大模型实时推理，输出动作策略' },
   { step: '04', title: '运动执行', desc: '28 自由度执行器毫秒级响应，全身协调控制输出' },
 ];
@@ -87,7 +87,7 @@ function Chip3DShowcase() {
               Core Compute · 核心技术底座
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 leading-tight">
-              AegisEdge A15
+              AegisEdge Ai5
               <span className="block bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-400 bg-clip-text text-transparent">
                 端侧 AI 算力核心
               </span>
@@ -124,7 +124,7 @@ function Chip3DShowcase() {
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-md border border-cyan-400/40 rounded-full text-xs text-cyan-200 hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-400/70 transition-all"
             >
               <Layers size={14} />
-              查看 AegisEdge A15 完整 3D 拆解
+              查看 AegisEdge Ai5 完整 3D 拆解
               <ArrowRight size={14} />
             </Link>
           </motion.div>
@@ -205,11 +205,11 @@ export default function RobotDetail() {
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8"
           >
             <Cpu size={16} className="text-cyan-300" />
-            <span className="text-xs font-semibold tracking-[0.4em] text-cyan-200">AegisEdge A15 · 下一代机器人芯片</span>
+            <span className="text-xs font-semibold tracking-[0.4em] text-cyan-200">AegisEdge Ai5 · 下一代机器人芯片</span>
           </motion.div>
 
           <h1 className="font-display text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tight mb-6 leading-none">
-            <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent">AegisEdge A15</span>
+            <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent">AegisEdge Ai5</span>
             <br />
             <span className="text-3xl md:text-5xl lg:text-6xl text-white/90">机器人专用芯片</span>
           </h1>
@@ -223,7 +223,7 @@ export default function RobotDetail() {
               to="/products"
               className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-100 transition-all"
             >
-              查看搭载 AegisEdge A15 的机器人
+              查看搭载 AegisEdge Ai5 的机器人
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
@@ -413,13 +413,13 @@ export default function RobotDetail() {
             className="text-center mb-14"
           >
             <p className="text-xs font-semibold tracking-[0.4em] text-blue-400 uppercase mb-4">Scenarios · 适用场景</p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">AegisEdge A15 已在三类场景落地</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">AegisEdge Ai5 已在三类场景落地</h2>
             <div className="section-divider" />
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { tag: 'B 端', title: '机构 24h 巡护', desc: '养老院整建制部署，AegisEdge A15 驱动毫秒级跌倒识别与转移辅助', color: 'from-blue-500/20 to-cyan-500/20', border: 'border-blue-400/40' },
+              { tag: 'B 端', title: '机构 24h 巡护', desc: '养老院整建制部署，AegisEdge Ai5 驱动毫秒级跌倒识别与转移辅助', color: 'from-blue-500/20 to-cyan-500/20', border: 'border-blue-400/40' },
               { tag: 'C 端', title: '家庭情感陪伴', desc: '端侧 70B 大模型支撑情感对话，隐私不出户、延迟可忽略', color: 'from-teal-500/20 to-emerald-500/20', border: 'border-teal-400/40' },
               { tag: 'G 端', title: '民政公益巡访', desc: '硬件级安全飞地保障行为可追溯，对接监管平台合规留痕', color: 'from-indigo-500/20 to-purple-500/20', border: 'border-indigo-400/40' },
             ].map((s, idx) => (
@@ -453,14 +453,14 @@ export default function RobotDetail() {
               to="/products"
               className="group inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full text-sm font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-blue-500/30"
             >
-              查看搭载 AegisEdge A15 的机器人系列
+              查看搭载 AegisEdge Ai5 的机器人系列
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* 新增章节：AegisEdge A15 边缘 AI 架构白皮书 */}
+      {/* 新增章节：AegisEdge Ai5 边缘 AI 架构白皮书 */}
       <section className="relative py-20 md:py-28 bg-gradient-to-b from-black via-[#080812] to-black overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none" />
 
@@ -479,7 +479,7 @@ export default function RobotDetail() {
               十层封装，一颗芯片定义机器人感知闭环
             </h2>
             <p className="text-sm text-white/55 max-w-2xl mx-auto leading-relaxed">
-              AegisEdge A15 将散热、导热、基板、计算、内存、互连、传感、安全、硅基与触点十层立体协同，实现「感知—计算—执行」端到端闭环。
+              AegisEdge Ai5 将散热、导热、基板、计算、内存、互连、传感、安全、硅基与触点十层立体协同，实现「感知—计算—执行」端到端闭环。
             </p>
             <div className="section-divider" />
           </motion.div>
@@ -554,14 +554,14 @@ export default function RobotDetail() {
               className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-md border border-cyan-400/40 rounded-full text-sm font-semibold text-cyan-100 hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-400/70 transition-all"
             >
               <Layers size={16} />
-              进入 AegisEdge A15 完整 3D 拆解演示
+              进入 AegisEdge Ai5 完整 3D 拆解演示
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* 新增章节：A15 vs 上一代代际对比 */}
+      {/* 新增章节：Ai5 vs 上一代代际对比 */}
       <section className="relative py-20 md:py-28 bg-[#050510] overflow-hidden">
         <div className="absolute top-1/4 -right-40 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 -left-40 w-[500px] h-[500px] bg-cyan-600/15 rounded-full blur-[120px] pointer-events-none" />
@@ -578,10 +578,10 @@ export default function RobotDetail() {
               Generation Leap · 代际跃升
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-              AegisEdge A15 较上一代的四维跃升
+              AegisEdge Ai5 较上一代的四维跃升
             </h2>
             <p className="text-sm text-white/55 max-w-2xl mx-auto leading-relaxed">
-              从算力、延迟、能效到传感器路数，A15 为人形机器人边缘 AI 而生。
+              从算力、延迟、能效到传感器路数，Ai5 为人形机器人边缘 AI 而生。
             </p>
             <div className="section-divider" />
           </motion.div>
@@ -635,7 +635,7 @@ export default function RobotDetail() {
             className="mt-12 max-w-3xl mx-auto text-center"
           >
             <blockquote className="text-sm md:text-base text-white/55 leading-relaxed italic border-l-2 border-cyan-400/50 pl-5 text-left">
-              「AegisEdge A15 不是一颗更快的芯片，而是为人形机器人重新定义的边缘 AI 架构——
+              「AegisEdge Ai5 不是一颗更快的芯片，而是为人形机器人重新定义的边缘 AI 架构——
               让感知、计算与安全在单芯片内闭环，让机器人真正具备实时、可信、可部署的智能。」
             </blockquote>
             <p className="text-[11px] text-white/35 mt-3 tracking-widest">— SENWEI 森卫安护 · AegisEdge 架构团队</p>

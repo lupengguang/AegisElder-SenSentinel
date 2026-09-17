@@ -11,7 +11,7 @@ import {
 
 /* ====================================================================
  * 森卫安护｜G 端民政公益板块完整解决方案
- * 核心硬件：AegisEdge A15 人形机器人边缘 AI 芯片
+ * 核心硬件：AegisEdge Ai5 人形机器人边缘 AI 芯片
  * 适用：民政局、街道社区、养老服务中心、社区养老驿站、公益养老项目
  * ==================================================================== */
 
@@ -48,9 +48,9 @@ const capabilities = [
     no: '01',
     icon: ClipboardList,
     title: '社区重点老人常态化智能巡访',
-    subtitle: 'AegisEdge A15 本地多模态感知',
+    subtitle: 'AegisEdge Ai5 本地多模态感知',
     desc:
-      'AegisEdge A15 提供端侧多模态感知能力，机器人在社区养老驿站或入户开展自助探访。自动问询长者身体状况、精神状态、生活困难，生成标准化探访记录；针对独居、失能高危老人定期巡检，减轻社区网格员上门走访压力，解决基层人手不足、走访频次不足的痛点。',
+      'AegisEdge Ai5 提供端侧多模态感知能力，机器人在社区养老驿站或入户开展自助探访。自动问询长者身体状况、精神状态、生活困难，生成标准化探访记录；针对独居、失能高危老人定期巡检，减轻社区网格员上门走访压力，解决基层人手不足、走访频次不足的痛点。',
     points: [
       { icon: Users, text: '自动问询身体 / 精神 / 生活状况' },
       { icon: FileText, text: '生成标准化探访记录' },
@@ -67,9 +67,9 @@ const capabilities = [
     no: '02',
     icon: ShieldAlert,
     title: '社区长者安全风险预警与分级上报',
-    subtitle: 'AegisEdge A15 本地视觉推理 · 分级推送',
+    subtitle: 'AegisEdge Ai5 本地视觉推理 · 分级推送',
     desc:
-      '依靠 AegisEdge A15 本地视觉推理，识别跌倒、长时间独处不动等高危场景。告警信息分级推送：一级险情推送社区网格员、民政应急专员；普通健康提醒留存至民生监管后台。端侧本地预处理数据，仅同步脱敏后的统计信息至政务平台，严格保障居民个人隐私，符合政务数据安全规范。',
+      '依靠 AegisEdge Ai5 本地视觉推理，识别跌倒、长时间独处不动等高危场景。告警信息分级推送：一级险情推送社区网格员、民政应急专员；普通健康提醒留存至民生监管后台。端侧本地预处理数据，仅同步脱敏后的统计信息至政务平台，严格保障居民个人隐私，符合政务数据安全规范。',
     points: [
       { icon: ShieldAlert, text: '跌倒 / 久卧本地视觉识别' },
       { icon: Users, text: '一级险情推网格员 + 应急专员' },
@@ -88,7 +88,7 @@ const capabilities = [
     title: '社区养老驿站公共服务，普惠老年群体',
     subtitle: '大模型轻量化本地推理 · 多方言交互',
     desc:
-      '部署在社区养老服务站，面向辖区老人提供集中式服务：健康科普、慢病宣教、心理疏导、文娱陪伴、智能教学（教老人使用手机）。AegisEdge A15 支持大模型轻量化本地推理，支持多方言交互，降低老年人使用门槛，作为社区养老公共服务的数字化基础设施。',
+      '部署在社区养老服务站，面向辖区老人提供集中式服务：健康科普、慢病宣教、心理疏导、文娱陪伴、智能教学（教老人使用手机）。AegisEdge Ai5 支持大模型轻量化本地推理，支持多方言交互，降低老年人使用门槛，作为社区养老公共服务的数字化基础设施。',
     points: [
       { icon: BookOpen, text: '健康科普 · 慢病宣教' },
       { icon: Heart, text: '心理疏导 · 文娱陪伴' },
@@ -105,9 +105,9 @@ const capabilities = [
     no: '04',
     icon: BarChart3,
     title: '养老民生数据看板，政务平台对接',
-    subtitle: 'AegisEdge A15 安全隔离单元 · 脱敏加密',
+    subtitle: 'AegisEdge Ai5 安全隔离单元 · 脱敏加密',
     desc:
-      '所有采集数据经过 AegisEdge A15 安全隔离单元脱敏加密，可对接民政养老监管平台。后台可视化看板展示辖区老人分布、风险事件统计、服务覆盖率、巡访完成率。为民政部门提供客观民生数据，支撑养老政策评估、财政项目验收、社区养老资源调配。',
+      '所有采集数据经过 AegisEdge Ai5 安全隔离单元脱敏加密，可对接民政养老监管平台。后台可视化看板展示辖区老人分布、风险事件统计、服务覆盖率、巡访完成率。为民政部门提供客观民生数据，支撑养老政策评估、财政项目验收、社区养老资源调配。',
     points: [
       { icon: Lock, text: '安全隔离单元脱敏加密' },
       { icon: Database, text: '对接民政养老监管平台' },
@@ -298,7 +298,7 @@ export default function G2CGovernment() {
             className="text-sm md:text-base text-white/70 max-w-3xl mx-auto leading-relaxed mb-8"
           >
             AegisElder SenSentinel 森卫安护人形陪护机器人，搭载
-            <span className="text-indigo-300 font-semibold"> AegisEdge A15 边缘 AI 芯片</span>
+            <span className="text-indigo-300 font-semibold"> AegisEdge Ai5 边缘 AI 芯片</span>
             ，助力社区居家养老服务数字化落地，完善基层长者安全保障体系。
           </motion.p>
 
@@ -320,7 +320,7 @@ export default function G2CGovernment() {
               <Cpu size={18} className="text-white" />
             </motion.span>
             <div className="text-left">
-              <p className="text-xs font-bold text-indigo-200 tracking-wider">AegisEdge A15</p>
+              <p className="text-xs font-bold text-indigo-200 tracking-wider">AegisEdge Ai5</p>
               <p className="text-[10px] text-white/45">边缘 AI 芯片 · 端侧安全隔离 · 政务合规</p>
             </div>
             <Link
@@ -394,14 +394,14 @@ export default function G2CGovernment() {
             <p className="text-base md:text-lg text-white/78 leading-[1.95] mb-8">
               面向民政部门、街道社区服务中心、社区养老驿站，打造
               <span className="text-indigo-300 font-semibold">普惠型社区智慧养老公共服务方案</span>
-              。森卫安护搭载<span className="text-indigo-300 font-semibold"> AegisEdge A15 边缘 AI 芯片</span>
+              。森卫安护搭载<span className="text-indigo-300 font-semibold"> AegisEdge Ai5 边缘 AI 芯片</span>
               ，本地端侧运行 <span className="text-purple-300 font-semibold">Qwen3-Omni 多模态大模型</span>
               ，依托端侧算力完成社区老人风险感知、健康随访、重点人群监护。助力基层落实独居、空巢、失能、低保长者关爱巡访，补齐社区养老人力缺口，建立长者安全风险台账，形成「社区驿站 + 入户看护 + 数据监管」一体化养老服务底座，辅助民政单位做养老民生监测、风险预警与服务成效统计。
             </p>
 
             <div className="flex flex-wrap gap-2.5">
               {[
-                { icon: Cpu, text: 'AegisEdge A15 端侧芯片' },
+                { icon: Cpu, text: 'AegisEdge Ai5 端侧芯片' },
                 { icon: Sparkles, text: 'Qwen3-Omni 多模态大模型' },
                 { icon: Lock, text: '安全隔离单元脱敏加密' },
                 { icon: ShieldCheck, text: '政务数据合规对接' },
@@ -474,7 +474,7 @@ export default function G2CGovernment() {
               普惠型社区养老的 <span className="bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent">数字化底座</span>
             </h2>
             <p className="text-sm text-white/55 max-w-2xl mx-auto">
-              巡访、预警、服务、监管，AegisEdge A15 助力民政把长者安全网织密到基层最后一公里。
+              巡访、预警、服务、监管，AegisEdge Ai5 助力民政把长者安全网织密到基层最后一公里。
             </p>
             <div className="section-divider" />
           </motion.div>
@@ -682,7 +682,7 @@ export default function G2CGovernment() {
             {[
               { step: 'STEP 1', title: '需求勘测', desc: '走访辖区长者分布、驿站场地与民政监管需求' },
               { step: 'STEP 2', title: '机器人部署', desc: '驿站集中部署 + 重点老人入户，SLAM 快速建图' },
-              { step: 'STEP 3', title: '政务平台对接', desc: 'A15 安全隔离单元脱敏加密，对接监管平台' },
+              { step: 'STEP 3', title: '政务平台对接', desc: 'Ai5 安全隔离单元脱敏加密，对接监管平台' },
               { step: 'STEP 4', title: '运营陪跑', desc: '完整服务台账自动产出，支撑项目验收' },
             ].map((s, i) => (
               <motion.div

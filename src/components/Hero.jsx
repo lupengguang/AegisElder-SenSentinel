@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,23 +39,51 @@ const letterZh = {
 const englishTitle = 'AegisElder SenSentinel';
 const chineseTitle = '森卫安护';
 
+/* 一屏背景自动轮播：真实养老陪护场景照片（置于 public/images/，交叉淡入 + Ken Burns 缓推） */
+const heroSlides = [
+  `${import.meta.env.BASE_URL}images/hero-main.jpghero-main (1).jpg`,
+  `${import.meta.env.BASE_URL}images/hero-main.jpghero-main (2).jpg`,
+  `${import.meta.env.BASE_URL}images/hero-main.jpghero-main (3).jpg`,
+  `${import.meta.env.BASE_URL}images/hero-main.jpghero-main (4).jpg`,
+  `${import.meta.env.BASE_URL}images/hero-main.jpghero-main (5).jpg`,
+];
+
 export default function Hero() {
   const navigate = useNavigate();
+
+  /* 自动轮播：6s 切换，[slide] 依赖让每次切换后重新计时 */
+  const [slide, setSlide] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 6000);
+    return () => clearInterval(t);
+  }, [slide]);
+
   return (
     <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black">
-      {/* 全屏背景图：智能安防守护场景 */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        initial={{ scale: 1.15 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2, ease: 'easeOut' }}
-      >
-        <img
-          src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=futuristic%20smart%20security%20control%20center%20dark%20blue%20tech%20interface%20holographic%20surveillance%20dashboard%20cinematic%20wide%20angle%20cyberpunk%20city%20night%20view%20epic&image_size=landscape_16_9"
-          alt="森卫安护智能安防中心"
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
+      {/* 全屏背景：真实场景照片自动轮播 */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={slide}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ opacity: { duration: 1.4, ease: 'easeInOut' } }}
+            aria-hidden
+          >
+            <motion.img
+              src={heroSlides[slide]}
+              alt="森卫安护智能养老陪护场景"
+              className="w-full h-full object-cover"
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1.15 }}
+              transition={{ duration: 7.5, ease: 'linear' }}
+              draggable={false}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* 渐变遮罩层 */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/40 to-black/90" />

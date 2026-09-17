@@ -43,10 +43,8 @@ function CountUp({ to, duration = 1.8, suffix = '', prefix = '', decimals = 0, c
 const IMG = (prompt, size = 'landscape_4_3') =>
   `https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${size}`;
 
-const explodedImg = IMG(
-  'two identical white humanoid robot heads in side profile facing each other, left head complete with glossy black curved visor face and small blue sensor dots, right head fully exploded open revealing black mechanical skull frame with circular blue glowing camera lens ring and exposed gear components, several detached white matte shell panels and black mechanical neck parts floating in the space between the two heads, thick black braided cable bundles hanging below as neck structures, white robot shoulders and upper torso visible at bottom of frame, pure clean white background, large empty white space on left third of image, soft studio lighting, premium humanoid robot product launch keynote render, photorealistic ultra detailed 4k',
-  'landscape_16_9'
-);
+/* 二屏主视觉：白黑双机器人对视爆炸图（本地真实图片，置于 public/images/） */
+const explodedImg = `${import.meta.env.BASE_URL}images/robot-exploded.jpg`;
 const fullBodyImg = IMG(
   'front view half body portrait of sleek humanoid robot standing straight facing camera, smooth white matte armor plates, glossy black oval face visor with single glowing blue eye dot, cyan glowing LED bar on chest, black ribbed mechanical neck joints, arms relaxed at sides, pure white seamless background, official product catalog hero photo, minimalist studio render, ultra detailed 4k',
   'portrait_4_3'

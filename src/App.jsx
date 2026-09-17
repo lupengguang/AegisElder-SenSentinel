@@ -13,6 +13,7 @@ import QwenOmniBrain from './pages/QwenOmniBrain';
 import AegisDock from './pages/AegisDock';
 import BackupBattery from './pages/BackupBattery';
 import AIChatDemo from './pages/AIChatDemo';
+import About from './pages/About';
 
 function PageRoutes() {
   const location = useLocation();
@@ -74,24 +75,7 @@ function PageRoutes() {
             </SimplePage>
           }
         />
-        <Route
-          path="/about"
-          element={
-            <SimplePage title="关于 VoltageShop" subtitle="赋能航拍创造力">
-              <div className="space-y-6 text-gray-700 leading-relaxed">
-                <p>VoltageShop 是专业航拍无人机与配件的领先提供商。我们相信，让每个人都能从全新高度俯瞰世界。</p>
-                <p>我们的使命是让高品质无人机技术触手可及——从捕捉旅行记忆的爱好者，到制作获奖航拍影片的创作者。</p>
-                <h2 className="text-2xl font-bold text-black mt-8">我们的价值观</h2>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>航拍技术的创新突破</li>
-                  <li>卓越的客户服务与支持</li>
-                  <li>耐用可靠的品质产品</li>
-                  <li>环境可持续发展</li>
-                </ul>
-              </div>
-            </SimplePage>
-          }
-        />
+        <Route path="/about" element={<About />} />
       </Routes>
     </AnimatePresence>
   );

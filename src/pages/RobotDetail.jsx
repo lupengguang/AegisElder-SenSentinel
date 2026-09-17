@@ -51,20 +51,38 @@ const pipeline = [
   { step: '04', title: '运动执行', desc: '28 自由度执行器毫秒级响应，全身协调控制输出' },
 ];
 
-/* ---------- 算力板块（扁平化芯片照片） ---------- */
+/* ---------- 算力板块（整板背景芯片图 + A15 品牌叠加） ---------- */
 const chipImg =
-  'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=photorealistic%20top-down%20product%20photograph%20of%20NVIDIA%20H200%20black%20square%20silicon%20chip%20processor%20on%20dark%20PCB%20board%2C%20golden%20circuit%20traces%2C%20glowing%20cyan%20blue%20signal%20paths%2C%20large%20blue%20AI%20accelerator%20core%20die%20in%20center%2C%20flat%20plan%20view%20no%203D%20perspective%2C%20studio%20macro%20lighting%2C%20high%20contrast%20detail%2C%20ultra%20detailed%204k%20product%20shot&image_size=square_hd';
+  'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=photorealistic%20top-down%20product%20photograph%20of%20a%20large%20black%20square%20silicon%20AI%20chip%20processor%20on%20dark%20PCB%20board%2C%20golden%20circuit%20traces%2C%20glowing%20cyan%20blue%20signal%20paths%2C%20a%20large%20featureless%20dark%20silicon%20die%20in%20center%20with%20NO%20logos%20NO%20text%20NO%20labels%20NO%20watermarks%2C%20flat%20plan%20view%20no%203D%20perspective%2C%20studio%20macro%20lighting%2C%20high%20contrast%20detail%2C%20ultra%20detailed%204k%20product%20shot%2C%20close%20up%20macro%20composition%20filling%20entire%20frame&image_size=landscape_16_9';
 
 function Chip3DShowcase() {
   return (
-    <section className="relative py-20 md:py-28 bg-gradient-to-b from-black via-[#080812] to-black overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      {/* 背景：扁平化芯片图 */}
+      <div
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${chipImg})` }}
+        aria-hidden
+      />
+      {/* 文字可读性遮罩 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/75 to-black pointer-events-none" />
+      {/* 左右渐变柔化边缘 */}
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black to-transparent pointer-events-none" />
+      {/* 顶部/底部柔化 */}
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black via-black/60 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
       {/* 背景光晕 */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[300px] h-[300px] bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/3 left-10 w-[280px] h-[280px] bg-red-500/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/20 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[340px] h-[340px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        {/* 中心数据光环（叠加背景图） */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full border border-cyan-400/15 pointer-events-none" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full border border-purple-400/10 pointer-events-none" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full border border-dashed border-cyan-400/18 pointer-events-none" />
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[520px]">
           {/* 左：文字 */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -80,7 +98,7 @@ function Chip3DShowcase() {
               <span className="bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent"> AegisEdge A15 </span>
               的每一寸性能
             </h2>
-            <p className="text-sm md:text-base text-white/65 leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-white/70 leading-relaxed mb-8">
               3nm 制程的精密布局，1280 TOPS 算力的金属脉络，触手可及。
               AegisEdge A15 边缘 AI 芯片参考顶级 H200 级算力密度设计，
               在人形机器人狭窄机身内实现端侧大模型实时推理，
@@ -98,7 +116,7 @@ function Chip3DShowcase() {
                 return (
                   <span
                     key={item.label}
-                    className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/15 rounded-full px-4 py-2 text-xs text-white/80"
+                    className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/15 rounded-full px-4 py-2 text-xs text-white/85"
                   >
                     <Icon size={14} className="text-cyan-300" />
                     {item.label}
@@ -117,85 +135,86 @@ function Chip3DShowcase() {
             </Link>
           </motion.div>
 
-          {/* 右：扁平化 H200 风格芯片照片 */}
+          {/* 右：叠加在背景芯片图上的 A15 品牌展示 */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[440px] md:h-[520px] flex items-center justify-center"
+            className="relative flex flex-col items-center"
           >
-            {/* 圆形数据光环（装饰，不旋转） */}
-            <div className="absolute w-[380px] h-[380px] rounded-full border border-cyan-400/15" />
-            <div className="absolute w-[460px] h-[460px] rounded-full border border-purple-400/10" />
-            <div className="absolute w-[320px] h-[320px] rounded-full border border-dashed border-cyan-400/20" />
-
-            {/* 芯片照片容器 */}
+            {/* 中心 A15 芯片 die 品牌卡（叠在背景图中心） */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              whileHover={{ scale: 1.02 }}
-              className="relative w-[320px] h-[320px] md:w-[380px] md:h-[380px] rounded-3xl overflow-hidden border border-white/20 shadow-[0_40px_100px_-20px_rgba(34,211,238,0.3)]"
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-2xl overflow-hidden border border-white/20 bg-black/40 backdrop-blur-sm shadow-[0_40px_100px_-20px_rgba(34,211,238,0.35)]"
             >
-              {/* 芯片主图 */}
-              <img
-                src={chipImg}
-                alt="H200 风格芯片 · AegisEdge A15 算力参考"
-                className="absolute inset-0 w-full h-full object-cover"
-                draggable={false}
-              />
-
-              {/* A15 品牌覆盖层 */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-transparent via-transparent to-black/60">
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
-                  <span className="font-display text-xl md:text-2xl font-black bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
-                    A15
-                  </span>
-                  <p className="text-[9px] tracking-[0.35em] text-cyan-200/70 mt-0.5">AEGISEDGE · EDGE AI</p>
+              {/* die 内部 A15 品牌（叠加在干净芯片中心） */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="font-display text-6xl md:text-7xl font-black tracking-wider bg-gradient-to-br from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(34,211,238,0.45)]">
+                  A15
                 </div>
-              </div>
-
-              {/* 角标注（左上 / 右上 / 左下 / 右下） */}
-              {[
-                { pos: 'top-3 left-3', text: 'CHIP · A15', sub: '3nm PROCESS' },
-                { pos: 'top-3 right-3', text: '1280 TOPS', sub: 'AI PERFORMANCE', reversed: true },
-              ].map((tag) => (
-                <div key={tag.pos} className={`absolute ${tag.pos} bg-black/55 backdrop-blur-sm border border-white/10 rounded-lg px-2.5 py-1.5`}>
-                  <p className="text-[11px] font-black text-cyan-300 tracking-wide leading-none">{tag.text}</p>
-                  <p className="text-[8px] tracking-[0.25em] text-white/50 mt-0.5 leading-none">{tag.sub}</p>
-                </div>
-              ))}
-
-              {/* 底部信息条 */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                <div className="mt-2 flex items-center gap-1.5">
                   <motion.span
                     className="w-1.5 h-1.5 rounded-full bg-emerald-400"
-                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
                     transition={{ duration: 1.4, repeat: Infinity }}
                   />
-                  <span className="text-[10px] text-white/70 font-semibold tracking-wider">LIVE · EDGE INFERENCE</span>
+                  <p className="text-[10px] tracking-[0.35em] text-cyan-200/70 font-semibold">AEGISEDGE · EDGE AI</p>
                 </div>
-                <span className="text-[10px] text-white/50 font-semibold tabular-nums">
-                  {new Date().getFullYear()}
-                </span>
+              </div>
+
+              {/* 内环装饰 */}
+              <div className="absolute inset-4 border border-cyan-400/25 rounded-xl" />
+              <div className="absolute inset-6 border border-purple-400/20 rounded-lg" />
+
+              {/* die 四角角标 */}
+              <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm border border-white/10 rounded-md px-2 py-1">
+                <p className="text-[10px] font-black text-cyan-300 leading-none">3nm PROCESS</p>
+              </div>
+              <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm border border-white/10 rounded-md px-2 py-1">
+                <p className="text-[10px] font-black text-purple-300 leading-none">1280 TOPS</p>
+              </div>
+              <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm border border-white/10 rounded-md px-2 py-1">
+                <p className="text-[10px] font-black text-white/80 leading-none">920 B TRANS.</p>
+              </div>
+              <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm border border-white/10 rounded-md px-2 py-1">
+                <p className="text-[10px] font-black text-emerald-300 leading-none">{'< 2ms'}</p>
               </div>
             </motion.div>
 
-            {/* 左下参考说明 */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            {/* 下方参考说明 */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="absolute bottom-0 left-0 bg-white/5 backdrop-blur-md border border-white/15 rounded-lg px-3 py-2 text-[10px] text-cyan-200"
+              className="mt-6 text-[11px] text-white/55 tracking-wider"
             >
-              H200 级算力密度参考
-            </motion.div>
+              参考 H200 级算力密度设计 · 芯片底图为 AegisEdge A15 实拍渲染
+            </motion.p>
           </motion.div>
         </div>
+
+        {/* 底部信息条 */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="mt-10 flex items-center justify-center gap-3 text-[10px] text-white/55 tracking-wider"
+        >
+          <motion.span
+            className="w-1.5 h-1.5 rounded-full bg-emerald-400"
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.4, repeat: Infinity }}
+          />
+          <span>LIVE · EDGE INFERENCE</span>
+          <span className="text-white/25">|</span>
+          <span>END-TO-END · 端侧大模型推理</span>
+        </motion.div>
       </div>
     </section>
   );

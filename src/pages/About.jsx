@@ -107,7 +107,7 @@ export default function About() {
             <motion.img
               src={`${heroSlides[slide].base}${SLIDE_EXTS[0]}`}
               alt={heroSlides[slide].label}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover brightness-[1.12] saturate-[1.05]"
               initial={{ scale: 1.02 }}
               animate={{ scale: 1.1 }}
               transition={{ duration: 6.5, ease: 'linear' }}
@@ -156,10 +156,10 @@ export default function About() {
             </button>
           ))}
         </div>
-        {/* 可读性遮罩：中间通透展示照片，仅文字区与顶底加深 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/85 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+        {/* 可读性遮罩：背景提亮清晰，仅在文字区局部压暗 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/60 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-3/5 bg-gradient-to-r from-black/80 via-black/45 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
           {/* 返回导航 */}
@@ -175,18 +175,19 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="[text-shadow:0_2px_18px_rgba(0,0,0,0.65)]"
           >
-            <p className="text-xs font-semibold tracking-[0.4em] text-cyan-400 uppercase mb-4">
+            <p className="text-xs font-semibold tracking-[0.4em] text-cyan-300 uppercase mb-4 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)]">
               About · 关于我们
             </p>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 [text-shadow:0_4px_28px_rgba(0,0,0,0.75)]">
               一支小而美的
               <br />
-              <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(0,0,0,0.65)]">
                 养老守护团队
               </span>
             </h1>
-            <p className="max-w-2xl text-base md:text-lg text-white/70 leading-relaxed">
+            <p className="max-w-2xl text-base md:text-lg text-white/85 leading-relaxed [text-shadow:0_2px_14px_rgba(0,0,0,0.75)]">
               我们叫 AegisElder 森卫安护。两个人，一个目标——
               让每一位长者都被温柔守护，让每一个家庭都被安心陪伴。
               用机器人硬件、端侧 AI 与有温度的设计，

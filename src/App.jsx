@@ -14,6 +14,9 @@ import AegisDock from './pages/AegisDock';
 import BackupBattery from './pages/BackupBattery';
 import AIChatDemo from './pages/AIChatDemo';
 import About from './pages/About';
+import BuyingGuide from './pages/BuyingGuide';
+import Login from './pages/Login';
+import ProfilePage from './pages/ProfilePage';
 
 function PageRoutes() {
   const location = useLocation();
@@ -33,25 +36,9 @@ function PageRoutes() {
         <Route path="/aegis-dock" element={<AegisDock />} />
         <Route path="/backup-battery" element={<BackupBattery />} />
         <Route path="/ai-chat-demo" element={<AIChatDemo />} />
-        <Route
-          path="/guide"
-          element={
-            <SimplePage title="购买指南" subtitle="选购无人机前需要了解的一切">
-              <div className="space-y-6 text-gray-700 leading-relaxed">
-                <h2 className="text-2xl font-bold text-black">如何选择合适的无人机</h2>
-                <p>我们的全面购买指南帮助你在海量专业和消费级无人机中做出正确选择。无论你是想寻找第一款航拍无人机的爱好者，还是需要影视级设备的专业人士，我们都能为你提供解决方案。</p>
-                <h3 className="text-xl font-semibold mt-6">关键选购要素</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>续航时间：</strong>建议选择 25 分钟以上的型号，以便有充足的拍摄时间</li>
-                  <li><strong>相机画质：</strong>4K 是专业航拍的最低标准；6K+ 适合影视制作</li>
-                  <li><strong>重量与便携性：</strong>可折叠设计便于旅行携带</li>
-                  <li><strong>GPS 与增稳：</strong>获得流畅专业画面的必备条件</li>
-                  <li><strong>智能功能：</strong>自动跟随、航点规划和避障等特性</li>
-                </ul>
-              </div>
-            </SimplePage>
-          }
-        />
+        <Route path="/guide" element={<BuyingGuide />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route
           path="/contact"
           element={

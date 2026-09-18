@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ShoppingBag, User, Menu, X, MessageCircle } from 'lucide-react';
 
@@ -7,6 +7,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const [logged] = useState(() => !!localStorage.getItem('aegis_user'));
+
+  const goAccount = () => navigate(logged ? '/profile' : '/login');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,15 +97,21 @@ export default function Navbar() {
               <ShoppingBag size={20} />
               <span className="absolute -top-0.5 -right-0.5 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
             </motion.button>
-            <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="用户">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={goAccount}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="用户"
+            >
               <User size={20} />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              onClick={goAccount}
               className="hidden md:block px-5 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors glow-btn"
             >
-              登录
+              {logged ? '个人中心' : '登录'}
             </motion.button>
             <motion.button
               whileTap={{ scale: 0.95 }}

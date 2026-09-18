@@ -42,12 +42,12 @@ export default function Newsletter() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-              未来科技<br />
-              4K 航拍无人机<br />
-              悬浮城市之上
+              森卫安护，<br />
+              用 AI 守护<br />
+              每一段晚年时光
             </h2>
             <p className="text-gray-400 text-sm md:text-base max-w-md leading-relaxed">
-              订阅我们的邮件，获取独家优惠、新品发布和专业航拍技巧。
+              AegisElder SenSentinel・科技守伴，安护朝夕。
             </p>
           </motion.div>
 
@@ -65,8 +65,8 @@ export default function Newsletter() {
               className="absolute -top-10 -right-10 md:-top-16 md:-right-16 w-40 md:w-52 opacity-60"
             >
               <img
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=drone%20flying%20aerial%20urban%20night%20cityscape%20cinematic%20glowing&image_size=portrait_4_3"
-                alt="未来无人机"
+                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=friendly%20white%20humanoid%20caregiver%20robot%20gently%20accompanying%20a%20smiling%20elderly%20person%20in%20a%20warm%20cozy%20home%2C%20soft%20cyan%20chest%20light%20glowing%2C%20cinematic%20dark%20moody%20lighting%20with%20blue%20and%20purple%20ambient%2C%20shallow%20depth%20of%20field%2C%20NO%20text%20NO%20logos%2C%20ultra%20detailed%208k&image_size=portrait_4_3"
+                alt="森卫安护陪护机器人"
                 className="w-full rounded-2xl shadow-2xl"
               />
             </motion.div>

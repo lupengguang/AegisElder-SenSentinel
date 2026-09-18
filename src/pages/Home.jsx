@@ -8,6 +8,7 @@ import MovieGradeSection from '../components/MovieGradeSection';
 import NewArrivals from '../components/NewArrivals';
 import FeaturedAccessories from '../components/FeaturedAccessories';
 import AgriculturalDrones from '../components/AgriculturalDrones';
+import PolicySection from '../components/PolicySection';
 import IndustrySection from '../components/IndustrySection';
 import PromoBanner from '../components/PromoBanner';
 import Newsletter from '../components/Newsletter';
@@ -35,6 +36,7 @@ export default function Home() {
         <NewArrivals />
         <FeaturedAccessories />
         <AgriculturalDrones />
+        <PolicySection />
         <IndustrySection />
         <PromoBanner />
         <Newsletter />

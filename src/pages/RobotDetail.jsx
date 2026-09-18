@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Cpu, Zap, Brain, Shield, Activity, Layers, ArrowRight, Check, Network } from 'lucide-react';
+import { Cpu, Zap, Brain, Shield, Activity, Layers, ArrowRight, Check, Network, Radar, WifiOff } from 'lucide-react';
 
 /* AegisEdge Ai5 芯片详细介绍页 —— 蓝科技风 + 红紫交互背景 + 高斯模糊未来感 */
 /* 算力板块：H200 级扁平化真实芯片照片 */
@@ -49,6 +49,42 @@ const pipeline = [
   { step: '02', title: '张量融合', desc: 'AegisEdge Ai5 NPU 在统一张量空间完成多模态对齐与特征融合' },
   { step: '03', title: '大模型推理', desc: '端侧 70B 稀疏化大模型实时推理，输出动作策略' },
   { step: '04', title: '运动执行', desc: '28 自由度执行器毫秒级响应，全身协调控制输出' },
+];
+
+/* ---------- 系统架构流程图：感知 → 推理 → 决策 → 执行 ---------- */
+const archColumns = [
+  {
+    no: '01',
+    icon: Radar,
+    title: '多模态传感器',
+    tone: 'from-cyan-500/30 to-cyan-500/5',
+    dot: 'bg-cyan-400',
+    items: ['摄像头 / 麦克风', '触觉 / 力传感器', '环境传感器'],
+  },
+  {
+    no: '02',
+    icon: Cpu,
+    title: 'AegisEdge Ai5 芯片',
+    tone: 'from-blue-500/30 to-blue-500/5',
+    dot: 'bg-blue-400',
+    items: ['算力调度', '安全隔离', '数据加密'],
+  },
+  {
+    no: '03',
+    icon: Brain,
+    title: 'Qwen3-Omni 推理',
+    tone: 'from-purple-500/30 to-purple-500/5',
+    dot: 'bg-purple-400',
+    items: ['风险判断', '对话生成', '情绪识别'],
+  },
+  {
+    no: '04',
+    icon: Zap,
+    title: '决策输出',
+    tone: 'from-pink-500/30 to-pink-500/5',
+    dot: 'bg-pink-400',
+    items: ['语音交互', '运动控制', '告警推送'],
+  },
 ];
 
 /* ---------- 算力板块（干净 AI 芯片底图，无叠加框/标签） ---------- */
@@ -397,6 +433,130 @@ export default function RobotDetail() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 系统架构：感知 → 推理 → 决策 → 执行 全流程本地闭环 */}
+      <section className="relative py-20 md:py-28 bg-black overflow-hidden">
+        <div className="absolute top-1/3 -left-40 w-[500px] h-[500px] bg-cyan-600/15 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[130px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* 标题 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-14"
+          >
+            <p className="text-xs font-semibold tracking-[0.4em] text-cyan-400 uppercase mb-4">Architecture · 系统架构</p>
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-5">
+              感知 <span className="text-cyan-400">→</span> 推理 <span className="text-blue-400">→</span> 决策 <span className="text-purple-400">→</span> 执行
+            </h2>
+            <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-cyan-400/30 rounded-full px-5 py-2 text-xs text-cyan-200">
+              <Shield size={13} className="text-cyan-300" />
+              全流程本地闭环 · Local-Only Loop
+            </div>
+            <div className="section-divider" />
+          </motion.div>
+
+          {/* 横向流程图 */}
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-0">
+            {archColumns.map((col, idx) => {
+              const Icon = col.icon;
+              return (
+                <div key={col.title} className="contents">
+                  {/* 阶段列 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.15 }}
+                    whileHover={{ y: -6 }}
+                    className="flex-1 min-w-0 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-colors duration-300"
+                  >
+                    {/* 节点头 */}
+                    <div className={`relative flex items-center gap-3 px-5 py-4 bg-gradient-to-r ${col.tone} border-b border-white/10`}>
+                      <div className="w-9 h-9 rounded-xl bg-black/30 border border-white/20 flex items-center justify-center flex-shrink-0">
+                        <Icon size={17} className="text-white" />
+                      </div>
+                      <h3 className="font-display text-sm md:text-base font-bold text-white leading-tight">{col.title}</h3>
+                      <span className="absolute top-2 right-3 text-[10px] font-mono text-white/40">{col.no}</span>
+                    </div>
+                    {/* 子项 */}
+                    <div className="p-3.5 space-y-2.5">
+                      {col.items.map((item, i) => (
+                        <motion.div
+                          key={item}
+                          initial={{ opacity: 0, x: -14 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: idx * 0.15 + 0.2 + i * 0.1 }}
+                          className="flex items-center gap-2.5 bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2.5 text-xs text-white/75 hover:border-cyan-400/40 hover:text-white transition-colors duration-300"
+                        >
+                          <span className={`w-1.5 h-1.5 rounded-full ${col.dot} flex-shrink-0`} />
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* 列间箭头 */}
+                  {idx < archColumns.length - 1 && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.15 + 0.25 }}
+                      className="flex items-center justify-center py-1 md:py-0 md:px-1.5"
+                    >
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.2 }}
+                        className="rotate-90 md:rotate-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-white/20 text-cyan-300"
+                      >
+                        <ArrowRight size={16} />
+                      </motion.span>
+                    </motion.div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* 底部隐私与离线说明 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-10 grid md:grid-cols-2 gap-4"
+          >
+            {[
+              {
+                icon: Shield,
+                text: '仅告警事件与脱敏统计数据上传云端，原始音视频数据本地处理，保护长者隐私。',
+              },
+              {
+                icon: WifiOff,
+                text: '断网状态下，跌倒识别、本地对话、环境感知功能完全可用。',
+              },
+            ].map((note, i) => {
+              const NoteIcon = note.icon;
+              return (
+                <div
+                  key={i}
+                  className="flex items-start gap-3.5 bg-white/[0.03] backdrop-blur-md border border-cyan-400/20 rounded-2xl p-5 hover:border-cyan-400/50 transition-colors duration-300"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500/25 to-purple-500/25 border border-white/15 flex items-center justify-center flex-shrink-0">
+                    <NoteIcon size={16} className="text-cyan-300" />
+                  </div>
+                  <p className="text-xs md:text-sm text-white/70 leading-relaxed pt-1">{note.text}</p>
+                </div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 

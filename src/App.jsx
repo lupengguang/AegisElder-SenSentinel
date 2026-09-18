@@ -15,6 +15,7 @@ import BackupBattery from './pages/BackupBattery';
 import AIChatDemo from './pages/AIChatDemo';
 import About from './pages/About';
 import BuyingGuide from './pages/BuyingGuide';
+import PolicySupport from './pages/PolicySupport';
 import Login from './pages/Login';
 import ProfilePage from './pages/ProfilePage';
 
@@ -37,6 +38,7 @@ function PageRoutes() {
         <Route path="/backup-battery" element={<BackupBattery />} />
         <Route path="/ai-chat-demo" element={<AIChatDemo />} />
         <Route path="/guide" element={<BuyingGuide />} />
+        <Route path="/policy" element={<PolicySupport />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route

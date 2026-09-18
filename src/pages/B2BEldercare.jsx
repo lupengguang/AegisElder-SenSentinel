@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import {
@@ -16,27 +16,29 @@ import {
 
 /* ---------- 数字滚动计数组件 ---------- */
 function CountUp({ to, duration = 1.8, suffix = '', prefix = '', decimals = 0, className = '' }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
     let raf;
-    const start = performance.now();
-    const tick = (now) => {
-      const p = Math.min((now - start) / (duration * 1000), 1);
-      // easeOutExpo
-      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-      setValue(to * eased);
-      if (p < 1) raf = requestAnimationFrame(tick);
+    const timer = setTimeout(() => {
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / (duration * 1000), 1);
+        // easeOutExpo
+        const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+        setValue(to * eased);
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, 150);
+    return () => {
+      clearTimeout(timer);
+      if (raf) cancelAnimationFrame(raf);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration]);
+  }, [to, duration]);
 
   return (
-    <span ref={ref} className={className}>
+    <span className={className}>
       {prefix}{value.toFixed(decimals)}{suffix}
     </span>
   );
@@ -124,8 +126,9 @@ const capabilities = [
 
 /* ---------- 业务价值数据 ---------- */
 const valueStats = [
-  { icon: Moon, value: 75, suffix: '%', decimals: 0, label: '夜间巡护人力需求降低', desc: '减少夜班护工压力' },
   { icon: Zap, value: 3, suffix: ' 秒', prefix: '≤ ', decimals: 0, label: '安全事件预警响应', desc: '跌倒等高危秒级触达' },
+  { icon: ShieldCheck, value: 98.6, suffix: '%', decimals: 1, label: '跌倒识别准确率', desc: '端侧视觉姿态识别' },
+  { icon: Moon, value: 75, suffix: '%', decimals: 0, label: '夜间巡护人力需求降低', desc: '减少夜班护工压力' },
   { icon: FileText, value: 50, suffix: '%', decimals: 0, label: '文书记录工作量减少', desc: '照护台账自动生成' },
   { icon: Scale, value: 60, suffix: '%', decimals: 0, label: '护理综合效率提升', desc: '单楼层人力配置减半' },
 ];
@@ -614,7 +617,7 @@ export default function B2BEldercare() {
           </motion.div>
 
           {/* 四项核心指标 */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-10">
             {valueStats.map((s, i) => {
               const Icon = s.icon;
               return (

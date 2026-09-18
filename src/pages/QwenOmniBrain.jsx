@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import {
@@ -17,26 +17,28 @@ import {
 
 /* ---------- 数字滚动计数组件 ---------- */
 function CountUp({ to, duration = 1.8, suffix = '', prefix = '', decimals = 0, className = '' }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
     let raf;
-    const start = performance.now();
-    const tick = (now) => {
-      const p = Math.min((now - start) / (duration * 1000), 1);
-      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-      setValue(to * eased);
-      if (p < 1) raf = requestAnimationFrame(tick);
+    const timer = setTimeout(() => {
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / (duration * 1000), 1);
+        const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+        setValue(to * eased);
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, 150);
+    return () => {
+      clearTimeout(timer);
+      if (raf) cancelAnimationFrame(raf);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration]);
+  }, [to, duration]);
 
   return (
-    <span ref={ref} className={className}>
+    <span className={className}>
       {prefix}{value.toFixed(decimals)}{suffix}
     </span>
   );
@@ -807,7 +809,7 @@ export default function QwenOmniBrain() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
             {[
               { icon: Layers, value: 3, suffix: ' 档', label: '模型规格', desc: '7B / 14B / 26B' },
-              { icon: Zap, value: 2, suffix: 'ms', decimals: 0, label: '端到端延迟', desc: '认知到执行闭环' },
+              { icon: Zap, value: 2, suffix: 'ms', prefix: '< ', decimals: 0, label: '端到端延迟', desc: '认知到执行闭环' },
               { icon: Lock, value: 100, suffix: '%', label: '端侧处理', desc: '隐私数据不出端' },
               { icon: Users, value: 3, suffix: ' 类', label: '客户覆盖', desc: 'B / C / G 全场景' },
             ].map((s, i) => {
@@ -824,7 +826,7 @@ export default function QwenOmniBrain() {
                 >
                   <Icon size={22} className="text-amber-300 mx-auto mb-3" />
                   <p className="font-display text-3xl md:text-4xl font-black bg-gradient-to-r from-cyan-300 to-amber-300 bg-clip-text text-transparent mb-1 tabular-nums">
-                    <CountUp to={s.value} suffix={s.suffix} decimals={s.decimals || 0} />
+                    <CountUp to={s.value} suffix={s.suffix} prefix={s.prefix || ''} decimals={s.decimals || 0} />
                   </p>
                   <p className="text-sm font-semibold text-white/85">{s.label}</p>
                   <p className="text-[11px] text-white/40">{s.desc}</p>

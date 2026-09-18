@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { ArrowLeft, Code2, Cpu, Palette, Layout, Bot, Sparkles, Heart, ShieldCheck, Users, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Cpu, Bot, Heart, ShieldCheck, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
@@ -21,7 +21,7 @@ const members = [
     accent: 'from-cyan-400 to-blue-500',
     desc:
       '独立开发人，精通机器人整机硬件架构、嵌入式固件与云边协同系统。从 28 自由度执行器选型到端侧 AI 推理部署，全链路打通。',
-    icons: [Code2, Cpu, Bot],
+    stack: ['react', 'node', 'ros2'],
   },
   {
     name: '王宇欣',
@@ -33,7 +33,7 @@ const members = [
     accent: 'from-purple-400 to-fuchsia-500',
     desc:
       'AIGC 视觉专家与机器人产品设计师，负责 AegisElder 品牌视觉、陪护机器人情感化设计与交互体验。前端 GSAP 动效让 AI 温度可触。',
-    icons: [Palette, Layout, Sparkles],
+    stack: ['figma', 'ps', 'ae'],
   },
 ];
 
@@ -43,6 +43,50 @@ const values = [
   { icon: Cpu, title: '端侧智能', text: '数据不出设备，隐私即安全。' },
   { icon: Users, title: '陪伴共生', text: '人机不是替代，而是温柔的并肩。' },
 ];
+
+/* ---------- 团队技术栈品牌标志（官方几何造型 + 品牌色） ---------- */
+
+// React：官方原子轨道标志
+const ReactMark = () => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" aria-hidden>
+    <circle cx="12" cy="12" r="2.1" fill="#61DAFB" />
+    <g stroke="#61DAFB" strokeWidth="1">
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" transform="rotate(120 12 12)" />
+    </g>
+  </svg>
+);
+
+// Figma：官方五色几何标志
+const FigmaMark = () => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6" aria-hidden>
+    <path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4z" fill="#0ACF83" />
+    <path d="M4 12c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4z" fill="#A259FF" />
+    <path d="M4 4c0-2.2 1.8-4 4-4h4v8H8C5.8 8 4 6.2 4 4z" fill="#F24E1E" />
+    <path d="M12 0h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4V0z" fill="#FF7262" />
+    <circle cx="18" cy="12" r="4" fill="#1ABCFE" />
+  </svg>
+);
+
+// 文字型品牌块（Adobe / Node / ROS 官方图标构成方式）
+const WordMark = ({ bg, fg = '#fff', children }) => (
+  <span
+    className="w-full h-full rounded-[11px] flex items-center justify-center font-black tracking-tight leading-none select-none"
+    style={{ background: bg, color: fg, fontSize: children.length > 2 ? '10px' : '13px' }}
+  >
+    {children}
+  </span>
+);
+
+const BRANDS = {
+  react: { name: 'React', light: true, node: <ReactMark /> },
+  node: { name: 'Node.js', light: false, node: <WordMark bg="#539E43">NODE</WordMark> },
+  ros2: { name: 'ROS 2', light: false, node: <WordMark bg="#22314E">ROS2</WordMark> },
+  figma: { name: 'Figma', light: true, node: <FigmaMark /> },
+  ps: { name: 'Photoshop', light: false, node: <WordMark bg="#31A8FF">Ps</WordMark> },
+  ae: { name: 'After Effects', light: false, node: <WordMark bg="#9999FF">Ae</WordMark> },
+};
 
 /* 一屏 Hero 轮播：三张真实工作室照片（置于 public/images/about/，扩展名自动回退） */
 const SLIDE_EXTS = ['.jpg', '.png', '.jpeg'];
@@ -306,16 +350,31 @@ export default function About() {
                     ))}
                   </div>
 
-                  {/* 底部图标带 */}
-                  <div className={`flex items-center gap-3 text-white/50`}>
-                    {m.icons.map((Icon, idx) => (
-                      <span
-                        key={`${m.name}-${Icon.name}-${idx}`}
-                        className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors"
-                      >
-                        <Icon size={16} className={`bg-gradient-to-r ${m.accent} bg-clip-text text-transparent`} style={{ strokeWidth: 2.2 }} />
-                      </span>
-                    ))}
+                  {/* 底部技术栈品牌标志带 */}
+                  <div className="flex items-center gap-3 pt-1">
+                    {m.stack.map((key, idx) => {
+                      const b = BRANDS[key];
+                      return (
+                        <motion.span
+                          key={`${m.name}-${key}`}
+                          initial={{ opacity: 0, scale: 0.5, y: 10 }}
+                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.45 + idx * 0.12, type: 'spring', stiffness: 280, damping: 18 }}
+                          whileHover={{ y: -4, scale: 1.12 }}
+                          title={b.name}
+                          className={`group/icon relative w-11 h-11 rounded-xl flex items-center justify-center cursor-default shadow-lg shadow-black/30 ${
+                            b.light ? 'bg-white' : 'bg-white/[0.06] border border-white/15 hover:border-white/40'
+                          } transition-colors`}
+                        >
+                          {b.node}
+                          {/* hover 名称气泡 */}
+                          <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-white text-black text-[10px] font-bold opacity-0 group-hover/icon:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-xl">
+                            {b.name}
+                          </span>
+                        </motion.span>
+                      );
+                    })}
                   </div>
                 </div>
               </motion.article>

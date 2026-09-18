@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import {
@@ -17,26 +17,28 @@ import {
 
 /* ---------- 数字滚动计数组件 ---------- */
 function CountUp({ to, duration = 1.8, suffix = '', prefix = '', decimals = 0, className = '' }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
     let raf;
-    const start = performance.now();
-    const tick = (now) => {
-      const p = Math.min((now - start) / (duration * 1000), 1);
-      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-      setValue(to * eased);
-      if (p < 1) raf = requestAnimationFrame(tick);
+    const timer = setTimeout(() => {
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / (duration * 1000), 1);
+        const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+        setValue(to * eased);
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, 150);
+    return () => {
+      clearTimeout(timer);
+      if (raf) cancelAnimationFrame(raf);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration]);
+  }, [to, duration]);
 
   return (
-    <span ref={ref} className={className}>
+    <span className={className}>
       {prefix}{value.toFixed(decimals)}{suffix}
     </span>
   );

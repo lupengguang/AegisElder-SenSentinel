@@ -51,8 +51,8 @@ function PageRoutes() {
                 <div>
                   <h3 className="text-xl font-semibold text-black mb-4">取得联系</h3>
                   <div className="space-y-3">
-                    <p>📧 support@aegiselder.com</p>
-                    <p>📞 400-888-8888</p>
+                    <p>📧 1283019010@qq.com</p>
+                    <p>📞 15117928197</p>
                     <p>📍 中国 · 深圳 · 科技园</p>
                   </div>
                 </div>

@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { BatteryCharging, BatteryWarning, ArrowUpRight } from 'lucide-react';
+import { BatteryCharging, BatteryWarning, Watch, ArrowUpRight } from 'lucide-react';
 import { featuredAccessories } from '../data/products';
 
 /* 可跳转配件的图标徽章与提示文案 */
 const accessoryMeta = {
   'acc-1': { icon: BatteryCharging, hint: '查看 Home / Pro 两款' },
   'acc-2': { icon: BatteryWarning, hint: '查看断电 5 小时保障' },
+  'acc-3': { icon: Watch, hint: '查看完整技术规格' },
 };
 
 export default function FeaturedAccessories() {
@@ -28,7 +29,7 @@ export default function FeaturedAccessories() {
           <div className="w-16 h-0.5 bg-black mt-4" />
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {featuredAccessories.map((item, idx) => {
             const meta = accessoryMeta[item.id];
             const BadgeIcon = meta?.icon;
@@ -51,6 +52,16 @@ export default function FeaturedAccessories() {
                     alt={item.name}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    onError={
+                      item.imageFallback
+                        ? (e) => {
+                            if (!e.currentTarget.dataset.fb) {
+                              e.currentTarget.dataset.fb = '1';
+                              e.currentTarget.src = item.imageFallback;
+                            }
+                          }
+                        : undefined
+                    }
                   />
                   {/* 可跳转配件的图标徽章 */}
                   {BadgeIcon && (
@@ -83,39 +94,6 @@ export default function FeaturedAccessories() {
               </motion.div>
             );
           })}
-
-          {/* 特色大卡片 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            whileHover={{ y: -5 }}
-            className="col-span-2 md:col-span-2 bg-gradient-to-br from-gray-900 to-gray-700 rounded-xl p-6 md:p-8 text-white flex items-center justify-between group shadow-xl relative overflow-hidden"
-          >
-            {/* 装饰圆 */}
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full"
-            />
-            <div className="relative z-10">
-              <h3 className="text-xl md:text-2xl font-bold mb-2">擎护套装</h3>
-              <p className="text-gray-300 text-sm mb-3">机构级照护机器人全套配件</p>
-              <span className="text-lg font-bold">¥12,800</span>
-            </div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="w-24 md:w-32 opacity-80"
-            >
-              <img
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=humanoid%20caregiver%20robot%20accessory%20bundle%20charging%20dock%20battery%20dark%20background%20glowing%20blue&image_size=square"
-                alt="擎护套装"
-                className="w-full"
-              />
-            </motion.div>
-          </motion.div>
         </div>
       </div>
     </section>

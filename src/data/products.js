@@ -451,16 +451,12 @@ export const featuredAccessories = [
   {
     id: 'acc-3',
     name: '老人安全手环',
+    subtitle: 'SenHu Ultra 1 健康监测腕表',
     price: 399,
-    image:
+    link: '/senhu-ultra',
+    image: `${import.meta.env.BASE_URL}images/senhu-1.jpg`,
+    imageFallback:
       'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=elderly%20safety%20smart%20wristband%20heart%20rate%20SOS%20product%20shot%20white%20background&image_size=square',
-  },
-  {
-    id: 'acc-4',
-    name: '远程通讯基站',
-    price: 2999,
-    image:
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=5g%20robot%20communication%20base%20station%20device%20product%20shot%20studio&image_size=square',
   },
 ];
 

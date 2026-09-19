@@ -51,7 +51,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               className="text-xl md:text-2xl font-bold tracking-tight"
             >
-              <span className="font-display tracking-wider">VoltageShop</span>
+              <span className="font-display tracking-wider">森卫安护</span>
             </motion.div>
           </Link>
 

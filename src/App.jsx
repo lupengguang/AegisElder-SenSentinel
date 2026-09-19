@@ -12,6 +12,7 @@ import G2CGovernment from './pages/G2CGovernment';
 import QwenOmniBrain from './pages/QwenOmniBrain';
 import AegisDock from './pages/AegisDock';
 import BackupBattery from './pages/BackupBattery';
+import SenHuUltra from './pages/SenHuUltra';
 import AIChatDemo from './pages/AIChatDemo';
 import About from './pages/About';
 import BuyingGuide from './pages/BuyingGuide';
@@ -36,6 +37,7 @@ function PageRoutes() {
         <Route path="/qwen3-omni" element={<QwenOmniBrain />} />
         <Route path="/aegis-dock" element={<AegisDock />} />
         <Route path="/backup-battery" element={<BackupBattery />} />
+        <Route path="/senhu-ultra" element={<SenHuUltra />} />
         <Route path="/ai-chat-demo" element={<AIChatDemo />} />
         <Route path="/guide" element={<BuyingGuide />} />
         <Route path="/policy" element={<PolicySupport />} />
@@ -49,7 +51,7 @@ function PageRoutes() {
                 <div>
                   <h3 className="text-xl font-semibold text-black mb-4">取得联系</h3>
                   <div className="space-y-3">
-                    <p>📧 support@voltageshop.com</p>
+                    <p>📧 support@aegiselder.com</p>
                     <p>📞 400-888-8888</p>
                     <p>📍 中国 · 深圳 · 科技园</p>
                   </div>
